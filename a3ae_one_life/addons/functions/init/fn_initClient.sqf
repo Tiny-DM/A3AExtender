@@ -24,7 +24,7 @@ enableEnvironment [false, true];
 if !(isServer) then {
     call A3A_fnc_initVarCommon;
 
-    [] execVM QPATHTOFOLDER(Scripts\fn_advancedTowingInit.sqf);
+   [] execVM "\x\A3A\addons\core\Scripts\fn_advancedTowingInit.sqf";
 
     Info("Running client JNA preload");
     ["Preload"] call jn_fnc_arsenal;
@@ -56,7 +56,6 @@ if (isNil "A3A_serverVersion") then { A3A_serverVersion = "pre-3.3" };
 if (A3A_clientVersion != A3A_serverVersion) exitWith {
     private _errorStr = format [localize "STR_A3A_feedback_serverinfo_mismatch", A3A_serverVersion, A3A_clientVersion];
     [localize "STR_A3A_feedback_serverinfo", _errorStr] call A3A_fnc_customHint;
-    diag_log [A3A_clientVersion,A3A_serverVersion];
 };
 
 // Show server startup state hints
@@ -459,7 +458,7 @@ initClientDone = true;
 Info("initClient completed");
 
 if (A3A_oneLife && ((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID player}) != -1)) then {
-	[player] spawn A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine;
+	[player,true] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
 };
 
 if(!isMultiplayer) then

@@ -46,15 +46,20 @@ class CfgFunctions {
             class saveLoop {
                 file = QPATHTOFOLDER(Save\fn_saveLoop.sqf);
             };
+            class savePlayer {
+                file = QPATHTOFOLDER(Save\fn_savePlayer.sqf);
+            };
         };
     };
 
     class ADDON {
         class Quarantine {
             file = QPATHTOFOLDER(Quarantine);
+            class addActionRevive {};
             class enterQuarantine {};
             class exitQuarantine {};
             class getTagsAndBodies {};
+            class removeActionRevive {};
         }
     };
 };

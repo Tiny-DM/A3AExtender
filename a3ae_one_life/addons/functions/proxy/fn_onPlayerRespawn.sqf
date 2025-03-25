@@ -236,7 +236,7 @@ if (side group player == teamPlayer) then
 	[] spawn A3A_fnc_unitTraits;
 	[] spawn A3A_fnc_statistics;
 	if (A3A_oneLife) then {
-		[player] spawn A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine;
+		[player] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
 	};
 	
 	}

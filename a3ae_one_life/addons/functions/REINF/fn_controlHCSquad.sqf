@@ -31,7 +31,7 @@ private _titleStr = localize "STR_A3A_fn_reinf_controlHQSquad_title";
 
 if (player != theBoss) exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlHQSquad_no_commander"] call A3A_fnc_customHint;};
 if (captive player) exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlHQSquad_no_undercover"] call A3A_fnc_customHint;};
-if ((getPlayerUID player) in A3A_softBannedUIDList) exitWith {[_titleStr, "Dead players cannot control units."] call A3A_fnc_customHint;};
+if ((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID player}) != -1) exitWith {[_titleStr, "Dead players cannot control units."] call A3A_fnc_customHint;};
 if (!isNil "A3A_FFPun_Jailed" && {(getPlayerUID player) in A3A_FFPun_Jailed}) exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlHQSquad_no_nope"] call A3A_fnc_customHint;};
 
 _groups = _this select 0;

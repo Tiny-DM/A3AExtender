@@ -9,7 +9,7 @@ _unit = _units select 0;
 
 if (_unit == Petros) exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlunit_no_petros"] call A3A_fnc_customHint;};
 if (captive player) exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlunit_no_uncon"] call A3A_fnc_customHint;};
-if ((getPlayerUID player) in A3A_softBannedUIDList) exitWith {[_titleStr, "Dead players cannot control units."] call A3A_fnc_customHint;};
+if ((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID player}) != -1) exitWith {[_titleStr, "Dead players cannot control units."] call A3A_fnc_customHint;};
 if (player != leader group player) exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlunit_no_sl"] call A3A_fnc_customHint;};
 if (isPlayer _unit) exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlunit_no_other_player"] call A3A_fnc_customHint;};
 if (!(alive _unit) or (_unit getVariable ["incapacitated",false]))  exitWith {[_titleStr, localize "STR_A3A_fn_reinf_controlunit_no_deadUnit"] call A3A_fnc_customHint;};
