@@ -53,12 +53,7 @@ _playerHM set ["personalGarage", []];
 
 private _totalMoney = _playerUnit getVariable ["moneyX", 0];
 if (_shouldStripLoadout) then { _totalMoney = round (_totalMoney * 0.85) };
-if (_shouldStripLoadout) then { 
-    private _softBannedUIDList = A3A_softBannedUIDList;
-	diag_log [_playerID, name _playerUnit];
-    _softBannedUIDList pushBackUnique [_playerID, name _playerUnit];
-    missionNamespace setVariable ["A3A_softBannedUIDList",_softBannedUIDList,true];
-};
+if (_shouldStripLoadout) then {[_playerID,name _playerUnit] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;};
 
 if (_globalSave) then
 {

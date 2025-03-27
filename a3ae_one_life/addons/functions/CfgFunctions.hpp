@@ -56,10 +56,12 @@ class CfgFunctions {
         class Quarantine {
             file = QPATHTOFOLDER(Quarantine);
             class addActionRevive {};
+            class addToBanList {};
             class enterQuarantine {};
             class exitQuarantine {};
             class getTagsAndBodies {};
             class removeActionRevive {};
+            class removeFromBanList {};
         }
     };
 };

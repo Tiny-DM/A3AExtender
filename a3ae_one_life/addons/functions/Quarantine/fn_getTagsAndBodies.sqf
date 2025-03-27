@@ -41,13 +41,15 @@ private _currentTags = player call _fnc_findDogTags;
     private _owner = _x getVariable ["owner",objNull];
     private _uid = _x getVariable ["ownerUID",""];
     private _pos = (_softBannedUIDList findIf {_x#0 == _uid});
-    if (_pos == -1) exitWith {}; // not on ban list
+    if (_pos == -1) then { continue }; // not on ban list
     deleteVehicle _x; // need to figure out how to find the dog tag for the corpse and delete it
     private _banData = _softBannedUIDList#_pos;
     _banData call _fnc_cleanUpAll;
-    private _unit = _uid call BIS_fnc_getUnitByUID; // fixes an obscure ass bug I crashed out over
+    private _unit = _uid call BIS_fnc_getUnitByUID; // the _unit here was the dead body because both the alive player and the dead one share the same var name
     if (_unit isNotEqualTo objNull) then { // is online case
-        ["BODY",_unit] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
+        [_unit,"BODY"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
+    } else {
+        [_uid] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList",2];
     };
 } forEach _nearDeadPlayers;
 
@@ -55,13 +57,13 @@ private _currentTags = player call _fnc_findDogTags;
     private _dogTagData = _allDogtags getOrDefault [_x,""];
     private _name = _dogTagData#0;
     private _pos = (_softBannedUIDList findIf {_x#1 == _name});
-    if (_pos == -1) exitWith {}; //  not on ban list
+    if (_pos == -1) then { continue }; //  not on ban list
     private _banData = _softBannedUIDList#_pos;
     _banData call _fnc_cleanUpAll;
     private _unit = _banData#0 call BIS_fnc_getUnitByUID;
-    if (_unit isNotEqualTo []) then { // is online case
-        ["TAGS",_unit] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
+    if (_unit isNotEqualTo objNull) then { // is online case
+        [_unit,"TAGS"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
+    } else {
+        [_uid] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList",2];
     };
 } forEach _currentTags;
-
-missionNamespace setVariable ["A3A_softBannedUIDList",_softBannedUIDList,true];

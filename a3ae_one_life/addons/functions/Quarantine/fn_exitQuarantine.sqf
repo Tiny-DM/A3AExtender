@@ -11,12 +11,11 @@ private _titleStr = "One Life";
 #define POW_TIME 8
 
 params ["_player",["_reason",""]];
+diag_log [_player,_reason];
+private _uid = getplayerUID _player;
+private _name = name _player;
 
-private _softBannedUIDList = A3A_softBannedUIDList;
-private _pos = (_softBannedUIDList findIf {_x#0 == getPlayerUID _player});
-private _banInfo = _softBannedUIDList#_pos;
-
-Info_3("Freeing %1 from one-life jail [UID: %2] for reason %3",_banInfo#1,_banInfo#0,_reason);
+Info_3("Freeing %1 from one-life jail [UID: %2] for reason %3",_name,_uid,_reason);
 
 _waitTime = switch (_reason) do
 {
@@ -42,10 +41,7 @@ _waitTime = switch (_reason) do
 };
 sleep _waitTime;
 
-if (_pos != -1) then {
-    _softBannedUIDList deleteAt _pos;
-    missionNamespace setVariable ["A3A_softBannedUIDList",_softBannedUIDList,true];
-};
+[_uid] call A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList;
 
 _player setPosATL (getMarkerPos respawnTeamPlayer);
 

@@ -458,7 +458,7 @@ initClientDone = true;
 Info("initClient completed");
 
 if (A3A_oneLife && ((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID player}) != -1)) then {
-	[player,true] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
+	[player] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
 };
 
 if(!isMultiplayer) then
