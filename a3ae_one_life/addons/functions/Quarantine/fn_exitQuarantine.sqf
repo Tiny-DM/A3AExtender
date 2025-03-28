@@ -30,7 +30,7 @@ _waitTime = switch (_reason) do
     };
     case ("POW"):
     {
-        [_titleStr,format ["A POW was converted to the rebel side.<br/><br/>You have been revived.<br/>You will return to base in %1 seconds.",TAGS_TIME]] remoteExec ["A3A_fnc_customHint",_player];
+        [_titleStr,format ["A POW was converted to the rebel side.<br/><br/>You have been revived.<br/>You will return to base in %1 seconds.",POW_TIME]] remoteExec ["A3A_fnc_customHint",_player];
         POW_TIME
     };
     default {
