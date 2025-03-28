@@ -12,7 +12,7 @@ private _pos = (_softBannedUIDList findIf {_x#0 == _uid});
 if (_pos == -1) then {
     _softBannedUIDList pushBack [_uid,_name];
     missionNamespace setVariable ["A3A_softBannedUIDList",_softBannedUIDList,true];
-    Info_1("UID %1 added to banlist");
+    Debug_1("UID %1 added to banlist");
 } else {
-    Info_1("UID %1 already on banlist",_uid);
+    Debug_1("UID %1 already on banlist",_uid);
 };

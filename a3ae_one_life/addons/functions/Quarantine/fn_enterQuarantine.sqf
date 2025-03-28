@@ -30,7 +30,7 @@ if ((!isNil "_actions") && {!(_actions isEqualTo [])}) then {
 };
 if (_hasAction) exitWith {};
 
-Info_2("Adding revive actions for %1 [UID: %2]",_name,_uid);
+Debug_2("Adding revive actions for %1 [UID: %2]",_name,_uid);
 
 waitUntil {sleep 0.1; ((_player distance2D _prisonPos) < 500)}; // make sure they have moved first
 

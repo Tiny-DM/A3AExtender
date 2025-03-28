@@ -61,6 +61,7 @@ class CfgFunctions {
             class exitQuarantine {};
             class getTagsAndBodies {};
             class removeActionRevive {};
+            class removeActionReviveServer {};
             class removeFromBanList {};
         }
     };

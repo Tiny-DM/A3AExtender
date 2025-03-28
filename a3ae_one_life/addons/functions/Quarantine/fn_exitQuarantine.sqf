@@ -6,12 +6,11 @@ FIX_LINE_NUMBERS()
 private _titleStr = "One Life";
 
 #define ADMIN_TIME 5
-#define BODY_TIME 6
-#define TAGS_TIME 7
-#define POW_TIME 8
+#define BODY_TIME 10
+#define TAGS_TIME 15
+#define POW_TIME 30
 
 params ["_player",["_reason",""]];
-diag_log [_player,_reason];
 private _uid = getplayerUID _player;
 private _name = name _player;
 
@@ -42,6 +41,7 @@ _waitTime = switch (_reason) do
 sleep _waitTime;
 
 [_uid] call A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList;
+[_player] call A3AE_ONE_LIFE_FUNCTIONS_fnc_removeActionReviveServer;
 
 _player setPosATL (getMarkerPos respawnTeamPlayer);
 
