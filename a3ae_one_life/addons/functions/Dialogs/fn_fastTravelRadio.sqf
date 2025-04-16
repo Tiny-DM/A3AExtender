@@ -25,9 +25,6 @@ exitWith {[_titleStr, localize "STR_A3A_fn_dialogs_ftradio_no_command"] call A3A
 if (player != player getVariable ["owner",player])
 exitWith {[_titleStr, localize "STR_A3A_fn_dialogs_ftradio_no_control"] call A3A_fnc_customHint;};
 
-if ((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID player}) != -1)
-exitWith {[_titleStr, "Dead men don't tell tales...or fast travel, appparently."] call A3A_fnc_customHint;};
-
 if (!_esHC and !isNil {vehicle player getVariable "SA_Tow_Ropes"})
 exitWith {[_titleStr, localize "STR_A3A_fn_dialogs_ftradio_no_tow"] call A3A_fnc_customHint;};
 

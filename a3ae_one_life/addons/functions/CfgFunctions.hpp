@@ -26,6 +26,14 @@ class CfgFunctions {
                 file = QPATHTOFOLDER(init\fn_initVarServer.sqf);
             };
         };
+        class Missions {
+            class RES_Prisoners {
+                file = QPATHTOFOLDER(Missions\fn_RES_Prisoners.sqf);
+            };
+            class RES_Refugees {
+                file = QPATHTOFOLDER(Missions\fn_RES_Refugees.sqf);
+            };
+        };
         class proxy {
             class onPlayerRespawn {
                 file = QPATHTOFOLDER(proxy\fn_onPlayerRespawn.sqf);
@@ -57,12 +65,15 @@ class CfgFunctions {
             file = QPATHTOFOLDER(Quarantine);
             class addActionRevive {};
             class addToBanList {};
+            class cleanUp {};
             class enterQuarantine {};
             class exitQuarantine {};
+            class findDogTags {};
             class getTagsAndBodies {};
             class removeActionRevive {};
             class removeActionReviveServer {};
             class removeFromBanList {};
-        }
+            class reviveRandom {};
+        };
     };
 };

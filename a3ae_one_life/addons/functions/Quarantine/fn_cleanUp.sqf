@@ -1,0 +1,16 @@
+params ["_uid","_name"]; // entry deleted from A3A_softBannedUIDList
+private _allDogTags = ace_dogtags_dogtagsData; // hashmap
+private _oldBodies = allDeadMen select {_x getVariable ["ownerUID",""] isEqualTo _uid}; // all bodies with the owner UID of the player
+private _allBags = entities [["ACE_bodyBagObject"], []];
+private _playerBags = _allBags select {((_x getVariable ["ace_dogtags_dogtagData",[]])#0) == _name};
+private _toDelete = _oldBodies + _playerBags;
+{deleteVehicle _x} forEach _toDelete; // delete all those
+private _oldDogTags = [];
+{
+    private _playerDogTags = _x call A3AE_ONE_LIFE_FUNCTIONS_fnc_findDogTags; // find the dog tags on this persion
+    private _playerObj = _x; // grab player object for later
+    {
+        private _dogTagData = _allDogtags getOrDefault [_x,""]; // grab the data on the tag
+        if (_dogTagData#0 == _name) then {_playerObj removeItem _x}; // if the first element of the tag data (name) equals the name, then remove the item from the player
+    } forEach _playerDogTags;
+} forEach (allPlayers - (entities "HeadlessClient_F")); // for all players

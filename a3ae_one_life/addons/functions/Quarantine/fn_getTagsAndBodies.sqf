@@ -14,29 +14,10 @@ private _playersToRelease = createHashMap;
 
 private _nearBodies = allDeadMen select {(_x distance2D (getMarkerPos respawnTeamPlayer)) < DISTANCE_BODY_GRAB};
 private _nearDeadPlayers = _nearBodies select {(_x getVariable ["ownerUID",""]) != ""};
-
+private _allBags = entities [["ACE_bodyBagObject"], []];
+private _nearBags = _allBags select {(_x distance2D (getMarkerPos respawnTeamPlayer)) < DISTANCE_BODY_GRAB};
 private _allDogTags = ace_dogtags_dogtagsData; // hashmap
-private _fnc_findDogTags = {
-    params ["_unit"];
-    private _allPlayerItems = uniformItems _unit + vestItems _unit + backpackItems _unit;
-    private _playerDogTags = _allPlayerItems select {_x find "ACE_dogtag_" != -1};
-    _playerDogTags;
-};
-private _fnc_cleanupAll = {
-    params ["_uid","_name"]; // entry deleted from A3A_softBannedUIDList
-    private _oldBodies = allDeadMen select {_x getVariable ["ownerUID",""] isEqualTo _uid}; // all bodies with the owner UID of the player
-    {deleteVehicle _x} forEach _oldBodies; // delete all those
-    private _oldDogTags = [];
-    {
-        private _playerDogTags = _x call _fnc_findDogTags; // find the dog tags on this persion
-        private _playerObj = _x; // grab player object for later
-        {
-            private _dogTagData = _allDogtags getOrDefault [_x,""]; // grab the data on the tag
-            if (_dogTagData#0 == _name) then {_playerObj removeItem _x}; // if the first element of the tag data (name) equals the name, then remove the item from the player
-        } forEach _playerDogTags;
-    } forEach (allPlayers - (entities "HeadlessClient_F")); // for all players
-};
-private _currentTags = player call _fnc_findDogTags;
+private _currentTags = player call A3AE_ONE_LIFE_FUNCTIONS_fnc_findDogTags;
 
 { // Param: corpse object near HQ with UID, I.E player.
     private _owner = _x getVariable ["owner",objNull];
@@ -47,20 +28,23 @@ private _currentTags = player call _fnc_findDogTags;
     _playersToRelease set [_banData,"BODY",true];
 } forEach _nearDeadPlayers;
 
-{ // Param: dog tag item in inventory. E.G. "ace_dogtag_1"
-    private _dogTagData = _allDogtags getOrDefault [_x,""];
-    private _name = _dogTagData#0;
+private _dogTagData = [];
+{_dogTagData pushBackUnique (_x getVariable ["ace_dogtags_dogTagData",[]]);} forEach _nearBags;
+{_dogTagData pushBackUnique (_allDogtags getOrDefault [_x,""]);} forEach _currentTags;
+
+{ // Param: dog tag data. Only important value is the first one, the name
+    private _name = _x#0;
     private _pos = (_softBannedUIDList findIf {_x#1 == _name});
     if (_pos == -1) then { continue }; //  not on ban list
     private _banData = _softBannedUIDList#_pos;
     _playersToRelease set [_banData,"TAGS",true];
-} forEach _currentTags;
+} forEach _dogTagData;
 
 {
     private _uid = _x#0;
     private _name = _x#1;
     private _reason = _y;
-    [_uid,_name] call _fnc_cleanUpAll;
+    [_uid,_name] call A3AE_ONE_LIFE_FUNCTIONS_fnc_cleanUp;
     private _unit = _uid call BIS_fnc_getUnitByUID; // the _unit here was the dead body because both the alive player and the dead one share the same var name
     if (_unit isNotEqualTo objNull) then { // is online case
         [_unit,_reason] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
