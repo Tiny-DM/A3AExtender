@@ -22,7 +22,7 @@ sleep 0.5;
 
 private _allDeadMinusPlayers = allDead select {(_x getVariable ["ownerUID",""]) isEqualTo ""};
 
-{ deleteVehicle _x } forEach _allDeadMinusPlauers;
+{ deleteVehicle _x } forEach _allDeadMinusPlayers;
 { deleteVehicle _x } forEach (allMissionObjects "WeaponHolder");
 { deleteVehicle _x } forEach (allMissionObjects "WeaponHolderSimulated");
 { if (isNull attachedTo _x) then { [_x, 500] call _fnc_distCheck } } forEach (allMissionObjects FactionGet(reb,"surrenderCrate"));// Surrender boxes
