@@ -376,6 +376,7 @@ _fuelAmountleftArray = [];
 
 //One Life
 ["A3A_softBannedUIDList", A3A_softBannedUIDList] call A3A_fnc_setStatVariable;
+["A3A_prisonPos", A3A_prisonPos] call A3A_fnc_setStatVariable;
 
 if (_saveToNewNamespace) then { saveMissionProfileNamespace } else { saveProfileNamespace };
 

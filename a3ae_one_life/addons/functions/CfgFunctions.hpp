@@ -12,6 +12,9 @@ class CfgFunctions {
             class garbageCleaner {
                 file = QPATHTOFOLDER(Base\fn_garbageCleaner.sqf);
             };
+            class resourceCheckSkipTime {
+                file = QPATHTOFOLDER(Base\fn_resourceCheckSkipTime.sqf);
+            };
         };
         class Dialogs {
             class fastTravelRadio {
@@ -65,14 +68,17 @@ class CfgFunctions {
             file = QPATHTOFOLDER(Quarantine);
             class addActionRevive {};
             class addToBanList {};
+            class checkIfExpired {};
             class cleanUp {};
             class enterQuarantine {};
             class exitQuarantine {};
+            class extendTimers {};
             class findDogTags {};
             class getTagsAndBodies {};
             class removeActionRevive {};
             class removeActionReviveServer {};
             class removeFromBanList {};
+            class releaseAllPlayers {};
             class reviveRandom {};
         };
     };

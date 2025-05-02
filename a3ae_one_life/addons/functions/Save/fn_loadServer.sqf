@@ -148,6 +148,8 @@ if (isServer) then {
 
 	["A3A_softBannedUIDList"] call A3A_fnc_getStatVariable;
 	publicVariable "A3A_softBannedUIDList";
+	["A3A_prisonPos"] call A3A_fnc_getStatVariable;
+	publicVariable "A3A_prisonPos";
 
     Info("Persistent Load Completed.");
 

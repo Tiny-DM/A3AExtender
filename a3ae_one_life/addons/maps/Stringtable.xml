@@ -3,7 +3,7 @@
   <Package name="A3AExtender">
     <Container name="credits_generic">
       <Key ID="STR_A3AE_credits_generic_author">
-        <Original>The Official Antistasi Community and Barbolani</Original>
+        <Original>The Official Antistasi Community, Barbolani, and Tiny</Original>
       </Key>
     </Container>
     <Container name="mission_info">
@@ -45,6 +45,18 @@
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Altis_loadText">
         <Original>Because nothing is more important than staying alive.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno_mapname_short">
+        <Original>Antistasi Chernarus</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno_mapname">
+        <Original>Antistasi Hardcore - Chernarus</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno_description">
+        <Original>Antistasi Chernarus Summer 3.8.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno_loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
       </Key>
     </Container>
   </Package>

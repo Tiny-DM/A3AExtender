@@ -28,5 +28,10 @@ class CfgMissions
             briefingName = "Antistasi 3.8.0 - More Slots";
             directory = QCPATHTO(Antistasi_MoreSlots_Altis.Altis);
         };
+        class Antistasi_MoreSlots_Cherno
+        {
+            briefingName = "Antistasi 3.8.0 - More Slots";
+            directory = QCPATHTO(Antistasi_MoreSlots_Cherno.chernarus_summer);
+        };
     };
 };

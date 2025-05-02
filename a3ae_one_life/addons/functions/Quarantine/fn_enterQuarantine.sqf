@@ -13,6 +13,7 @@ private _lastAdmin = objNull;
 _admin = [] call A3A_fnc_getAdmin;
 private _uid = getPlayerUID _player;
 private _name = name _player;
+if ([_uid] call A3AE_ONE_LIFE_FUNCTIONS_fnc_checkIfExpired) exitWith {Info_1("Timer expired for UID %1 player released!",_uid)};
 
 _player setPosATL _prisonPos;
 
@@ -29,6 +30,8 @@ if ((!isNil "_actions") && {!(_actions isEqualTo [])}) then {
     _hasAction = ((_actions findIf {_actionFrag in ((_admin actionParams _x)#0)}) != -1);
 };
 if (_hasAction) exitWith {};
+
+// Everything after this is action related
 
 Debug_2("Adding revive actions for %1 [UID: %2]",_name,_uid);
 

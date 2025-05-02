@@ -426,6 +426,31 @@ mapX addAction [localize "STR_A3A_fn_init_initclient_addact_gameOpt", {
 mapX addAction [localize "STR_A3A_fn_init_initclient_addact_mapinfo", A3A_fnc_cityinfo,nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 if (isMultiplayer) then {mapX addAction [localize "STR_A3A_fn_init_initclient_addact_ailoadinfo", { [] remoteExec ["A3A_fnc_AILoadInfo",2];},nil,0,false,true,"",""]}; // should be no reason to restrict the aiLoadInfo to anyone
 
+mapX addAction ["View dead list", {
+    private _nameList = A3A_softBannedUIDList apply {_x#1};
+    private _strNameList = _nameList joinString ", ";
+    ["One Life",
+    "Number of dead players: " + (str count _nameList) +"<br/><br/>"+ _strNameList
+    ] call A3A_fnc_customHint;
+},nil,0,false,true,"","
+    switch (A3A_oneLifeViewPerms) do {
+        case 0: {
+            (((call BIS_fnc_admin) > 0) || (isServer))
+        };
+        case 1: {
+            (player isEqualTo theBoss)
+        };
+        case 2: {
+            true
+        };
+    };
+", 4];
+
+mapX addAction ["Release all players", {
+    [] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_releaseAllPlayers",2];
+    ["One Life","All players released."] call A3A_fnc_customHint;
+},nil,0,false,true,"","(((call BIS_fnc_admin) > 0) || (isServer))", 4];
+
 [] call A3A_fnc_unitTraits;
 
 // Get list of buildable objects, has map (and template?) dependency
