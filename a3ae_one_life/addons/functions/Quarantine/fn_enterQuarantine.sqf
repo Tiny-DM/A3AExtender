@@ -36,11 +36,17 @@ if (_hasAction) exitWith {};
 Debug_2("Adding revive actions for %1 [UID: %2]",_name,_uid);
 
 waitUntil {sleep 0.1; ((_player distance2D _prisonPos) < 500)}; // make sure they have moved first
+if (A3A_oneLifeUseSpectator) then {
+    [[independent], [east,civilian,west]] call ace_spectator_fnc_updateSides;
+    [[1,2], [0]] call ace_spectator_fnc_updateCameraModes;
+    [[petros], []] call ace_spectator_fnc_updateUnits;
+    [true] call ace_spectator_fnc_setSpectator;
+};
 
 private _lastAdmin = objNull;
 _admin = [] call A3A_fnc_getAdmin;
 
-while {((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID _player}) > -1) && (isPlayer _player)} do {
+while {(((missionNamespace getVariable ["A3A_softBannedUIDList",_softBannedUIDList]) findIf {_x#0 == getPlayerUID _player}) > -1) && (isPlayer _player)} do {
     _admin = [] call A3A_fnc_getAdmin;  // Refreshes in case the admin logged in.
     if !(_admin isEqualTo _lastAdmin) then {  // Admin Change
         if (!isNull _lastAdmin) then {

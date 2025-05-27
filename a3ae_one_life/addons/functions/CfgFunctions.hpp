@@ -12,18 +12,19 @@ class CfgFunctions {
             class garbageCleaner {
                 file = QPATHTOFOLDER(Base\fn_garbageCleaner.sqf);
             };
+            class onPlayerDisconnect {
+                file = QPATHTOFOLDER(Base\fn_onPlayerDisconnect.sqf);
+            };
             class resourceCheckSkipTime {
                 file = QPATHTOFOLDER(Base\fn_resourceCheckSkipTime.sqf);
-            };
-        };
-        class Dialogs {
-            class fastTravelRadio {
-                file = QPATHTOFOLDER(Dialogs\fn_fastTravelRadio.sqf);
             };
         };
         class init {
             class initClient {
                 file = QPATHTOFOLDER(init\fn_initClient.sqf);
+            };
+            class initUtilityItems {
+                file = QPATHTOFOLDER(init\fn_initUtilityItems.sqf);
             };
             class initVarServer {
                 file = QPATHTOFOLDER(init\fn_initVarServer.sqf);
@@ -44,7 +45,7 @@ class CfgFunctions {
         };
         class REINF {
             class controlHCSquad {
-                file = QPATHTOFOLDER(REINF\fn_controlUnit.sqf);
+                file = QPATHTOFOLDER(REINF\fn_controlHCSquad.sqf);
             };
             class controlUnit {
                 file = QPATHTOFOLDER(REINF\fn_controlUnit.sqf);
@@ -59,6 +60,39 @@ class CfgFunctions {
             };
             class savePlayer {
                 file = QPATHTOFOLDER(Save\fn_savePlayer.sqf);
+            };
+        };
+        class UtilityItems {
+            class remainingAmmo {
+                file = QPATHTOFOLDER(UtilityItems\fn_remainingAmmo.sqf);
+            };
+        };
+    };
+    class A3A_GUI {
+        class GUI {
+            class playerManagementTab {
+                file = QPATHTOFOLDER(GUI\fn_playerManagementTab.sqf);
+            };
+        };
+    };
+    class HR_GRG {
+        class Public {
+            class addVehicle {
+                file = QPATHTOFOLDER(Public\fn_addVehicle.sqf);
+            };
+        };
+        class StatePreservation {
+            class getAmmoCargo {
+                file = QPATHTOFOLDER(StatePreservation\fn_getAmmoCargo.sqf);
+            };
+            class getState {
+                file = QPATHTOFOLDER(StatePreservation\fn_getState.sqf);
+            };
+            class setAmmoCargo {
+                file = QPATHTOFOLDER(StatePreservation\fn_setAmmoCargo.sqf);
+            };
+            class setState {
+                file = QPATHTOFOLDER(StatePreservation\fn_setState.sqf);
             };
         };
     };

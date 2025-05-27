@@ -25,13 +25,18 @@ class CfgMissions
     {
         class Antistasi_MoreSlots_Altis
         {
-            briefingName = "Antistasi 3.8.0 - More Slots";
+            briefingName = "Antistasi 3.9.0 - More Slots";
             directory = QCPATHTO(Antistasi_MoreSlots_Altis.Altis);
         };
         class Antistasi_MoreSlots_Cherno
         {
-            briefingName = "Antistasi 3.8.0 - More Slots";
+            briefingName = "Antistasi 3.9.0 - More Slots";
             directory = QCPATHTO(Antistasi_MoreSlots_Cherno.chernarus_summer);
+        };
+        class Antistasi_MoreSlots_Napf
+        {
+            briefingName = "Antistasi 3.9.0 - More Slots";
+            directory = QCPATHTO(Antistasi_MoreSlots_Napf.Napf);
         };
     };
 };

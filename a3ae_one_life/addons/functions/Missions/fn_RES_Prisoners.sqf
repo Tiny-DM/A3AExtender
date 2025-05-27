@@ -146,7 +146,7 @@ _weaponsX = [];
 _unit = _x;
 if (_unit distance getMarkerPos respawnTeamPlayer < 150) then
 	{
-	if (A3A_oneLife && (random 100 < A3A_oneLifePOWReviveChance)) then {["POW"] call A3AE_ONE_LIFE_FUNCTIONS_fnc_reviveRandom;};
+	if (A3A_oneLife && (random 100 < A3A_oneLifeMissionReviveChance)) then {["POW"] call A3AE_ONE_LIFE_FUNCTIONS_fnc_reviveRandom;};
 	{if (not(([_x] call BIS_fnc_baseWeapon) in unlockedWeapons)) then {_weaponsX pushBack ([_x] call BIS_fnc_baseWeapon)}} forEach weapons _unit;
 	{if (not(_x in unlockedMagazines)) then {_ammunition pushBack _x}} forEach magazines _unit;
 	_items = _items + (items _unit) + (primaryWeaponItems _unit) + (assignedItems _unit) + (secondaryWeaponItems _unit);

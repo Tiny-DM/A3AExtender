@@ -6,8 +6,19 @@ private _allDogTags = ace_dogtags_dogtagsData; // hashmap
 private _oldBodies = allDeadMen select {_x getVariable ["ownerUID",""] isEqualTo _uid}; // all bodies with the owner UID of the player
 private _allBags = entities [["ACE_bodyBagObject"], []];
 private _playerBags = _allBags select {((_x getVariable ["ace_dogtags_dogtagData",[]])#0) == _name};
-private _toDelete = _oldBodies + _playerBags;
-{deleteVehicle _x} forEach _toDelete; // delete all those
+{deleteVehicle _x} forEach _playerBags; // delete all those
+private _weaponsX = [];
+{
+{if (not(([_x] call BIS_fnc_baseWeapon) in unlockedWeapons)) then {_weaponsX pushBack ([_x] call BIS_fnc_baseWeapon)}} forEach weapons _unit;
+{if (not(_x in unlockedMagazines)) then {_ammunition pushBack _x}} forEach magazines _unit;
+_items = _items + (items _unit) + (primaryWeaponItems _unit) + (assignedItems _unit) + (secondaryWeaponItems _unit) + [(hmd _unit),(headGear _unit),(vest _unit)];
+deleteVehicle _x;
+
+{boxX addWeaponCargoGlobal [_x,1]} forEach _weaponsX;
+{boxX addMagazineCargoGlobal [_x,1]} forEach _ammunition;
+{boxX addItemCargoGlobal [_x,1]} forEach _items;
+} foreach _oldBodies;
+
 private _oldDogTags = [];
 {
     private _playerDogTags = _x call A3AE_ONE_LIFE_FUNCTIONS_fnc_findDogTags; // find the dog tags on this persion

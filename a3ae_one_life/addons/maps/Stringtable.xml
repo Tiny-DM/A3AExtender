@@ -41,7 +41,7 @@
         <Original>Antistasi - Liberation of Altis</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Altis_description">
-        <Original>Antistasi Altis 3.8.0, but with more player slots for your perusal.</Original>
+        <Original>Antistasi Altis 3.9.0, but with more player slots for your perusal.</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Altis_loadText">
         <Original>Because nothing is more important than staying alive.</Original>
@@ -53,9 +53,21 @@
         <Original>Antistasi Hardcore - Chernarus</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Cherno_description">
-        <Original>Antistasi Chernarus Summer 3.8.0, but with more player slots for your perusal.</Original>
+        <Original>Antistasi Chernarus Summer 3.9.0, but with more player slots for your perusal.</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Cherno_loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Napf_mapname_short">
+        <Original>Antistasi Napf</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Napf_mapname">
+        <Original>Antistasi Hardcore - Napf</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Napf_description">
+        <Original>Antistasi Napf 3.9.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Napf_loadText">
         <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
       </Key>
     </Container>

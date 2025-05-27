@@ -41,6 +41,7 @@ if (isServer) then {
 	["arsenalLimits"] call A3A_fnc_getStatVariable;
 	["rebelLoadouts"] call A3A_fnc_getStatVariable;
 	["jna_dataList"] call A3A_fnc_getStatVariable;
+	["minorSites"] call A3A_fnc_getStatVariable;
 	//===========================================================================
 
 	//RESTORE THE STATE OF THE 'UNLOCKED' VARIABLES USING JNA_DATALIST
@@ -66,19 +67,10 @@ if (isServer) then {
 	//Check if we have radios unlocked and update haveRadio.
 	call A3A_fnc_checkRadiosUnlocked;
 
-	// Set enemy roadblock allegiance to match nearest main marker
-	private _mainMarkers = markersX - controlsX - outpostsFIA;
-	{
-		if (sidesX getVariable [_x,sideUnknown] != teamPlayer) then {
-			private _nearX = [_mainMarkers, markerPos _x] call BIS_fnc_nearestPosition;
-			private _sideX = sidesX getVariable [_nearX,sideUnknown];
-			sidesX setVariable [_x,_sideX,true];
-		};
-	} forEach controlsX;
-
+	// Don't have minor sites here, but they're not visible so it's fine
 	{
 		[_x] call A3A_fnc_mrkUpdate
-	} forEach (markersX - controlsX);
+	} forEach markersX;
 
 	if (count outpostsFIA > 0) then {
 		markersX = markersX + outpostsFIA; publicVariable "markersX"
@@ -140,7 +132,7 @@ if (isServer) then {
 		private _playerData = createHashMap;
 		{
 			_playerData set [_x, [_uid, _x] call A3A_fnc_retrievePlayerStat];
-		} forEach ["moneyX", "loadoutPlayer", "scorePlayer", "rankPlayer", "personalGarage"];
+		} forEach ["moneyX", "loadoutPlayer", "scorePlayer", "rankPlayer", "personalGarage","missionsCompleted"];
 
 		if (isNil {_playerData get "moneyX"}) then { Error_1("Saved player %1 has no money var", _uid); continue };
 		A3A_playerSaveData set [_uid, _playerData];
