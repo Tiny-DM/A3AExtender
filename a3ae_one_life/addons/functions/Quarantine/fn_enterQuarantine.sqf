@@ -22,6 +22,7 @@ _player setPosATL _prisonPos;
 Info_2("Quarantined %1 [UID: %2]",_name,_uid);  
 
 [_uid, _name] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;
+["ADD"] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_manageSpectator",_player];
 
 private _actions = actionIDs _admin;
 private _hasAction = false;
@@ -36,12 +37,6 @@ if (_hasAction) exitWith {};
 Debug_2("Adding revive actions for %1 [UID: %2]",_name,_uid);
 
 waitUntil {sleep 0.1; ((_player distance2D _prisonPos) < 500)}; // make sure they have moved first
-if (A3A_oneLifeUseSpectator) then {
-    [[independent], [east,civilian,west]] call ace_spectator_fnc_updateSides;
-    [[1,2], [0]] call ace_spectator_fnc_updateCameraModes;
-    [[petros], []] call ace_spectator_fnc_updateUnits;
-    [true] call ace_spectator_fnc_setSpectator;
-};
 
 private _lastAdmin = objNull;
 _admin = [] call A3A_fnc_getAdmin;

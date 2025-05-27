@@ -45,8 +45,6 @@ sleep _waitTime;
 (owner _player) publicVariableClient "A3A_softBannedUIDList";
 
 _player setPosATL (getMarkerPos respawnTeamPlayer);
-if (A3A_oneLifeUseSpectator) then {
-    [false] remoteExecCall ["ace_spectator_fnc_setSpectator",_player];
-};
+["REMOVE"] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_manageSpectator",_player];
 
 [_titleStr,"You have been revived and returned to base."] remoteExec ["A3A_fnc_customHint",_player];

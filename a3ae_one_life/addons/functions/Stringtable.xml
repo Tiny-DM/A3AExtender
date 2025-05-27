@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="A3AExtender">
+  <Package name="A3AExtender">
+    <Container name="garage">
+      <Key ID="STR_HR_GRG_Feedback_addVehicle_Ammo_sold">
+        <Original>Ammo crate sold</Original>
+      </Key>
+    </Container>
+  </Package>
+</Project>

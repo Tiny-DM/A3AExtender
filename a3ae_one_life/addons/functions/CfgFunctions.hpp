@@ -109,6 +109,7 @@ class CfgFunctions {
             class extendTimers {};
             class findDogTags {};
             class getTagsAndBodies {};
+            class manageSpectator {};
             class removeActionRevive {};
             class removeActionReviveServer {};
             class removeFromBanList {};
