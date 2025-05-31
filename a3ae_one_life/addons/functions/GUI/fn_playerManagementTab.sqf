@@ -67,13 +67,12 @@ switch (_mode) do
             private _distance = format["%1 m", floor (player distance _x)];
 
             private _index = _listBox lnbAddRow [_name, _distance, _playerUID];
-            if (_isDead) exitWith {
-                _listBox lnbSetColor [[_index,0], [0.7,0,0,1]];
+            private _color =  switch (true) do {
+                case (_isDead): {[0.5,0,0,1]};
+                case (_isMember): {A3A_COLOR_MEMBER_SQF};
+                default {A3A_COLOR_GUEST_SQF};
             };
-            if (_isMember) exitWith {
-                _listBox lnbSetColor [[_index,0], A3A_COLOR_MEMBER_SQF];
-            };
-            _listBox lnbSetColor [[_index,0], A3A_COLOR_GUEST_SQF];
+            _listBox lnbSetColor [[_index,0], _color];
         } forEach allPlayers;
 
         _listBox lnbSetCurSelRow 0;
