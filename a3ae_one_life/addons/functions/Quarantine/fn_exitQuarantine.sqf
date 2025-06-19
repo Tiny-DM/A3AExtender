@@ -41,7 +41,6 @@ _waitTime = switch (_reason) do
 sleep _waitTime;
 
 [_uid] call A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList;
-[_player] call A3AE_ONE_LIFE_FUNCTIONS_fnc_removeActionReviveServer;
 (owner _player) publicVariableClient "A3A_softBannedUIDList";
 
 _player setPosATL (getMarkerPos respawnTeamPlayer);

@@ -49,6 +49,6 @@ private _dogTagData = [];
     if (_unit isNotEqualTo objNull) then { // is online case
         [_unit,_reason] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
     } else {
-        [_uid] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList",2];
+        [_uid] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList",2];
     };
 } forEach _playersToRelease;

@@ -31,7 +31,7 @@ switch _typeX do
     {
         petros addAction [localize "STR_A3A_fn_base_flagaction_asset_move", A3A_fnc_carryItem,nil,0,false,true,"","(_this == theBoss) and (petros == leader group petros) and (isNull objectParent _this) and !(call A3A_fnc_isCarrying)"];
         petros addAction [localize "STR_A3A_fn_base_flagaction_hq_build", A3A_fnc_buildHQ,nil,0,false,true,"","(_this == theBoss) and (petros != leader group petros)",4];
-        petros addAction ["Grab Tags And Bodies", A3AE_ONE_LIFE_FUNCTIONS_fnc_getTagsAndBodies,nil,0,false,true,"","true",4];
+        petros addAction ["Grab Tags And Bodies", {["GETNEARHQ"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_handleListRequest",2]},nil,0,false,true,"","true",4];
         
         petros addAction [localize "STR_A3A_fn_base_flagaction_hq_manage", { if (A3A_GUIDevPreview) then {createDialog "A3A_HqDialog"} else {call A3A_fnc_dialogHQ}; },nil,0,false,true,"","(_this == theBoss) and (petros == leader group petros)",4];
         petros addAction [localize "STR_A3A_fn_base_flagaction_missionrequest", { if (A3A_GUIDevPreview) then {createDialog "A3A_RequestMissionDialog"} else {createDialog "mission_menu";}; },nil,0,false,true,"","(([_this] call A3A_fnc_isMember or _this == theBoss) and (petros == leader group petros))",4];

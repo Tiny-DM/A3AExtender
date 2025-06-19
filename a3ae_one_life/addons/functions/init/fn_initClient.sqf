@@ -414,7 +414,7 @@ mapX addAction [localize "STR_A3A_fn_init_initclient_addact_gameOpt", {
         localize "STR_A3A_fn_init_initclient_gameOpt_version"+" "+ QUOTE(VERSION_FULL) +"<br/><br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_resoBal"+" "+ (A3A_enemyBalanceMul / 10 toFixed 1) + "x" +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_unlockNo"+" "+ str minWeaps +"<br/>"+
-        localize "STR_A3A_fn_init_initclient_gameOpt_limFT"+" "+ ([localize "STR_antistasi_dialogs_generic_button_no_text",localize "STR_antistasi_dialogs_generic_button_yes_text"] select limitedFT) +"<br/>"+
+        localize "STR_A3A_fn_init_initclient_gameOpt_limFT"+" "+ ([localize "STR_antistasi_dialogs_generic_button_no_text",localize "STR_antistasi_dialogs_generic_button_yes_text"] select (limitedFT != 0)) +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_spawnDist"+" "+ str distanceSPWN + "m" +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_civLim"+" "+ str globalCivilianMax +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_timeGC"+" "+ ([[serverTime-A3A_lastGarbageCleanTime] call A3A_fnc_secondsToTimeSpan,1,0,false,2,false,true] call A3A_fnc_timeSpan_format)
@@ -430,11 +430,7 @@ mapX addAction [localize "STR_A3A_fn_init_initclient_addact_mapinfo", A3A_fnc_ci
 if (isMultiplayer) then {mapX addAction [localize "STR_A3A_fn_init_initclient_addact_ailoadinfo", { [] remoteExec ["A3A_fnc_AILoadInfo",2];},nil,0,false,true,"",""]}; // should be no reason to restrict the aiLoadInfo to anyone
 
 mapX addAction ["View dead list", {
-    private _nameList = A3A_softBannedUIDList apply {_x#1};
-    private _strNameList = _nameList joinString ", ";
-    ["One Life",
-    "Number of dead players: " + (str count _nameList) +"<br/><br/>"+ _strNameList
-    ] call A3A_fnc_customHint;
+    ["VIEWDEADLIST"] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_handleListRequest", 2];
 },nil,0,false,true,"","
     switch (A3A_oneLifeViewPerms) do {
         case 0: {
@@ -450,11 +446,7 @@ mapX addAction ["View dead list", {
 ", 4];
 
 mapX addAction ["View game spectators", {
-    private _nameList = ([] call ace_spectator_fnc_players) apply {name _x};
-    private _strNameList = _nameList joinString ", ";
-    ["One Life",
-    "Number of spectators: " + (str count _nameList) +"<br/><br/>"+ _strNameList
-    ] call A3A_fnc_customHint;
+    [] call A3AE_ONE_LIFE_FUNCTIONS_fnc_viewGameSpectators;
 },nil,0,false,true,"","
     switch (A3A_oneLifeViewPerms) do {
         case 0: {
@@ -507,9 +499,11 @@ A3A_aliveTime = time;
 initClientDone = true;
 Info("initClient completed");
 
-if (A3A_oneLife && ((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID player}) != -1)) then {
-	[player] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
-};
+player setVariable ["A3A_playerName",name player,true];
+
+
+[player,true] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
+
 
 if(!isMultiplayer) then
 {

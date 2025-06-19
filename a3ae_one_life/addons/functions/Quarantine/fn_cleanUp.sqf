@@ -7,11 +7,12 @@ private _oldBodies = allDeadMen select {_x getVariable ["ownerUID",""] isEqualTo
 private _allBags = entities [["ACE_bodyBagObject"], []];
 private _playerBags = _allBags select {((_x getVariable ["ace_dogtags_dogtagData",[]])#0) == _name};
 {deleteVehicle _x} forEach _playerBags; // delete all those
-private _weaponsX = [];
 {
-{if (not(([_x] call BIS_fnc_baseWeapon) in unlockedWeapons)) then {_weaponsX pushBack ([_x] call BIS_fnc_baseWeapon)}} forEach weapons _unit;
-{if (not(_x in unlockedMagazines)) then {_ammunition pushBack _x}} forEach magazines _unit;
-_items = _items + (items _unit) + (primaryWeaponItems _unit) + (assignedItems _unit) + (secondaryWeaponItems _unit) + [(hmd _unit),(headGear _unit),(vest _unit)];
+private _weaponsX = [];
+private _ammunition = [];
+{if (not(([_x] call BIS_fnc_baseWeapon) in unlockedWeapons)) then {_weaponsX pushBack ([_x] call BIS_fnc_baseWeapon)}} forEach weapons _x;
+{if (not(_x in unlockedMagazines)) then {_ammunition pushBack _x}} forEach magazines _x;
+private _items = (items _x) + (primaryWeaponItems _x) + (assignedItems _x) + (secondaryWeaponItems _x) + [(hmd _x),(headGear _x),(vest _x)];
 deleteVehicle _x;
 
 {boxX addWeaponCargoGlobal [_x,1]} forEach _weaponsX;

@@ -55,7 +55,7 @@ _playerHM set ["missionsCompleted",_missions];
 
 private _totalMoney = _playerUnit getVariable ["moneyX", 0];
 if (_shouldStripLoadout) then { _totalMoney = round (_totalMoney * 0.85) };
-if (_shouldStripLoadout) then {[_playerID,name _playerUnit] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;};
+if (_shouldStripLoadout) then {[_playerID,_playerUnit getVariable ["A3A_playerName","No Name"]] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;};
 
 if (_globalSave) then
 {

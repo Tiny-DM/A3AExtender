@@ -76,6 +76,7 @@ switch (_mode) do
         } forEach allPlayers;
 
         _listBox lnbSetCurSelRow 0;
+        ["UPDATE"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_handleListRequest",2];
         ["playerLbSelectionChanged"] spawn FUNC(playerManagementTab);
     };
 
@@ -105,9 +106,12 @@ switch (_mode) do
         _addButton ctrlShow true;
         _removeButton ctrlShow false;
         _addButton ctrlSetText "Revive Player";
+        /*
         private _banList = missionNamespace getVariable ["A3A_softBannedUIDList",[]];
         private _isDead = ((_banList findIf {_x#0 ==_playerUID}) > -1);
+        systemChat str _isDead;
         _addButton ctrlEnable _isDead;
+        */
     };
 
     // Debug cases, to be removed/changed when merging

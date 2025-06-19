@@ -18,6 +18,9 @@ class CfgFunctions {
             class resourceCheckSkipTime {
                 file = QPATHTOFOLDER(Base\fn_resourceCheckSkipTime.sqf);
             };
+            class vehicleBoxRestore {
+                file = QPATHTOFOLDER(Base\fn_vehicleBoxRestore.sqf);
+            };
         };
         class init {
             class initClient {
@@ -31,6 +34,9 @@ class CfgFunctions {
             };
         };
         class Missions {
+            class convoy {
+                file = QPATHTOFOLDER(Missions\fn_convoy.sqf);
+            };
             class RES_Prisoners {
                 file = QPATHTOFOLDER(Missions\fn_RES_Prisoners.sqf);
             };
@@ -75,7 +81,19 @@ class CfgFunctions {
             };
         };
     };
+    class JN {
+        class JNA {
+            class arsenal_addItem {
+                file = QPATHTOFOLDER(JNA\fn_arsenal_addItem.sqf);
+            };
+        };
+    };
     class HR_GRG {
+        class Core {
+            class toggleConfirmBttn {
+                file = QPATHTOFOLDER(Core\fn_toggleConfirmBttn.sqf);
+            };
+        };
         class Public {
             class addVehicle {
                 file = QPATHTOFOLDER(Public\fn_addVehicle.sqf);
@@ -100,7 +118,6 @@ class CfgFunctions {
     class ADDON {
         class Quarantine {
             file = QPATHTOFOLDER(Quarantine);
-            class addActionRevive {};
             class addToBanList {};
             class checkIfExpired {};
             class cleanUp {};
@@ -109,12 +126,13 @@ class CfgFunctions {
             class extendTimers {};
             class findDogTags {};
             class getTagsAndBodies {};
+            class handleListRequest {};
             class manageSpectator {};
-            class removeActionRevive {};
-            class removeActionReviveServer {};
             class removeFromBanList {};
             class releaseAllPlayers {};
             class reviveRandom {};
+            class viewDeadList {};
+            class viewGameSpectators {};
         };
     };
 };

@@ -235,10 +235,7 @@ if (side group player == teamPlayer) then
 	[] spawn A3A_fnc_unitTraits;
 	[] spawn A3A_fnc_statistics;
 	A3A_aliveTime = time;
-	if (A3A_oneLife) then {
-		[player] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
-		[_oldUnit] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeActionReviveServer",2];
-	};
+	[player] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
 	
 	}
 else

@@ -36,8 +36,8 @@ if (_recruiting) then {
 		_response = localize "STR_A3A_fn_ai_captureX_recr_yes1";
 		_modHR = true;
 		_fleeSide = teamPlayer;
-		if (A3A_oneLife && (random 100 < A3A_oneLifePOWReviveChance)) then {
-			["POW"] call A3AE_ONE_LIFE_FUNCTIONS_fnc_reviveRandom;
+		if (random 100 < A3A_oneLifePOWReviveChance) then {
+			["POW"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_reviveRandom",2];
 		};
 	}
 	else
