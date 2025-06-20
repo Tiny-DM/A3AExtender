@@ -24,19 +24,7 @@ if(typeName (_this select 0) isEqualTo "SCALAR")then{//[_index, _item] and [_ind
 			if !(_item isEqualTo "")then{
 
 				if(_index == -1)exitWith{["Antistasi: ERROR in additemarsenal: %1", _this] call BIS_fnc_error};
-                if(_item find "ACE_dogtag_" != -1)exitWith{
-                    _data = ace_dogtags_dogtagsData getOrDefault [_item,""];
-                    private _pos = (A3A_softBannedUIDList findIf {_x#1 == _data#0});
-                    if (_pos == -1) exitWIth {};
-                    private _listData = A3A_softBannedUIDList#_pos;
-                    _listData call A3AE_ONE_LIFE_FUNCTIONS_fnc_cleanUp;
-                    private _unit = _listData#0 call BIS_fnc_getUnitByUID; 
-                    if (_unit isNotEqualTo objNull) then {
-                        [_unit,"TAGS"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
-                    } else {
-                        [_uid] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList",2];
-                    };
-                };
+                if(_item find "ACE_dogtag_" != -1)exitWith{}; // dog tags just get deleted. cargo and loadout changes catch it, if it passes, just delete it
 				if(_index == IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG)then{_index = IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL};
 
 				//TFAR fix
@@ -69,4 +57,3 @@ if(typeName (_this select 0) isEqualTo "SCALAR")then{//[_index, _item] and [_ind
 		};
 	} forEach _x;
 }foreach _array;
-

@@ -139,25 +139,17 @@ else
 	};
 
 sleep 60;
-_items = [];
-_ammunition = [];
-_weaponsX = [];
 private _numToRevive= 0;
 {
 _unit = _x;
 if (_unit distance getMarkerPos respawnTeamPlayer < 150) then
 	{
 	if (random 100 < A3A_oneLifeMissionReviveChance) then {_numToRevive = _numToRevive + 1};
-	{if (not(([_x] call BIS_fnc_baseWeapon) in unlockedWeapons)) then {_weaponsX pushBack ([_x] call BIS_fnc_baseWeapon)}} forEach weapons _unit;
-	{if (not(_x in unlockedMagazines)) then {_ammunition pushBack _x}} forEach magazines _unit;
-	_items = _items + (items _unit) + (primaryWeaponItems _unit) + (assignedItems _unit) + (secondaryWeaponItems _unit);
+	[_unit,false] call A3AE_ONE_LIFE_FUNCTIONS_fnc_unlockedToArsenal;
 	};
-deleteVehicle _unit;
+	deleteVehicle _unit;
 } forEach _POWs;
 if (_numToRevive > 0) then {["POW", _numToRevive] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_reviveRandom",2]};
 deleteGroup _grpPOW;
-{boxX addWeaponCargoGlobal [_x,1]} forEach _weaponsX;
-{boxX addMagazineCargoGlobal [_x,1]} forEach _ammunition;
-{boxX addItemCargoGlobal [_x,1]} forEach _items;
 
 [_taskId, "RES", 1200] spawn A3A_fnc_taskDelete;

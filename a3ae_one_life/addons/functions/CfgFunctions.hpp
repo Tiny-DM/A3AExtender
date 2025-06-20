@@ -76,6 +76,9 @@ class CfgFunctions {
     };
     class A3A_GUI {
         class GUI {
+            class buyVehicleTabs {
+                file = QPATHTOFOLDER(GUI\fn_buyVehicleTabs.sqf);
+            };
             class playerManagementTab {
                 file = QPATHTOFOLDER(GUI\fn_playerManagementTab.sqf);
             };
@@ -85,6 +88,9 @@ class CfgFunctions {
         class JNA {
             class arsenal_addItem {
                 file = QPATHTOFOLDER(JNA\fn_arsenal_addItem.sqf);
+            };
+            class arsenal_loadInventory {
+                file = QPATHTOFOLDER(JNA\fn_arsenal_loadInventory.sqf);
             };
         };
     };
@@ -131,6 +137,7 @@ class CfgFunctions {
             class removeFromBanList {};
             class releaseAllPlayers {};
             class reviveRandom {};
+            class unlockedToArsenal {};
             class viewDeadList {};
             class viewGameSpectators {};
         };
