@@ -6,12 +6,11 @@ private _titleStr = "One Life";
 private _entryStr = "You have died. You find yourself in a mystical, faraway land, free of the government's cruelty...<br/><br/>If your body or dog tags are brought back to base, you will be revived.<br/>If a POW is recruited, you have a chance of being revived.";
 
 params ["_player", ["_checkOnList",false]];
-
-if (_checkOnList && ((A3A_softBannedUIDList findIf {_x#0 == getPlayerUID player}) == -1)) exitWith {false};
-
-private _prisonPos = A3A_prisonPos;
 private _uid = getPlayerUID _player;
+private _prisonPos = A3A_prisonPos;
 private _name = name _player;
+
+if (_checkOnList && ((A3A_softBannedUIDList findIf {_x#0 == _uid}) == -1)) exitWith {false};
 if ([_uid] call A3AE_ONE_LIFE_FUNCTIONS_fnc_checkIfExpired) exitWith {Info_1("Timer expired for UID %1 player released!",_uid)};
 
 _player setPosATL _prisonPos;

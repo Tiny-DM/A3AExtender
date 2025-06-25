@@ -33,6 +33,8 @@ if (side group _unit == teamPlayer || side group _unit == sideUnknown) then
 	};
 };
 
+if (!(alive _realUnit) || (_realUnit getVariable ["incapacitated", false])) then {[_uid,_realUnit getVariable ["A3A_playerName","No Name"]] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;};
+
 [_uid, _realUnit, false] call A3A_fnc_savePlayer;
 
 // Preventing duping due to weapon loadout saves

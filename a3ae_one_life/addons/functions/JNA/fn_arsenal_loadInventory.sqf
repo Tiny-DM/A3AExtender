@@ -146,7 +146,8 @@ _backpack_old = backpack player;
             if (_pos == -1) exitWIth {};
             private _listData = A3A_softBannedUIDList#_pos;
             _listData call A3AE_ONE_LIFE_FUNCTIONS_fnc_cleanUp;
-            private _unit = _listData#0 call BIS_fnc_getUnitByUID; 
+			private _uid = _listData#0;
+            private _unit = _uid call BIS_fnc_getUnitByUID; 
             if (_unit isNotEqualTo objNull) then {
                 [_unit,"TAGS"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
             } else {
