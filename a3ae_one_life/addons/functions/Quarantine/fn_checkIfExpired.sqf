@@ -1,4 +1,4 @@
-params ["_uid"];
+params ["_uid", ["_reason", "TAGS"]];
 
 if (A3A_oneLifeExpireTimer == -1) exitWith {false};
 if ((A3A_softBannedUIDList findIf {_x#0 == _uid}) == -1) exitWith {false};
@@ -14,6 +14,11 @@ private _currentTime = dateToNumber date;
 
 if (_currentTime < _releaseTime) exitWith {false};
 
-[_uid] call A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList;
+private _unit = _uid call BIS_fnc_getUnitByUID; 
+if (_unit isNotEqualTo objNull) then {
+    [_unit,_reason] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2]; 
+} else {
+    [_uid] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList",2];
+};
 
 true;

@@ -8,6 +8,7 @@ private _titleStr = "One Life";
 #define ADMIN_TIME 5
 #define BODY_TIME 10
 #define TAGS_TIME 15
+#define TIME_TIME 10
 #define POW_TIME 30
 
 params ["_player",["_reason",""]];
@@ -32,6 +33,11 @@ _waitTime = switch (_reason) do
     {
         [_titleStr,format ["A POW was converted to the rebel side.<br/><br/>You have been revived.<br/>You will return to base in %1 seconds.",POW_TIME]] remoteExec ["A3A_fnc_customHint",_player];
         POW_TIME
+    };
+    case ("TIME"):
+    {
+        [_titleStr,format ["Ages have passed. You finally find a rebel soldier who's soul you can occupy.<br/><br/>You have been revived.<br/>You will return to base in %1 seconds.",TIME_TIME]] remoteExec ["A3A_fnc_customHint",_player];
+        TIME_TIME
     };
     default {
         [_titleStr,format ["A divine favor has transpired.<br/><br/>You have been revived.<br/>You will return to base in %1 seconds.",ADMIN_TIME]] remoteExec ["A3A_fnc_customHint",_player];

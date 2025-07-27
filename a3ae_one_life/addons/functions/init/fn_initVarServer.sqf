@@ -608,7 +608,9 @@ DECLARE_SERVER_VAR(A3A_softBannedUIDList, []);
 private _prisonPos = switch (worldName) do {
 	case ("Altis"): {[8414.33,25129.7,0.00212097]};
 	case ("chernarus_summer"): {[100, 1500, 0]};
+	case ("Enoch"): {[9143.23,378.525,0.00143433]};
 	case ("Napf"): {[13286.6,19603.8,0.000953674]};
+	case ("vt7"): {[7620.6,576.11,0.00152874]};
 	default {[100,100,0]};
 };
 DECLARE_SERVER_VAR(A3A_prisonPos,_prisonPos);

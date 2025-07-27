@@ -33,10 +33,15 @@ if (side group _unit == teamPlayer || side group _unit == sideUnknown) then
 	};
 };
 
-if (!(alive _realUnit) || (_realUnit getVariable ["incapacitated", false])) then {[_uid,_realUnit getVariable ["A3A_playerName","No Name"]] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;};
+if (!(alive _realUnit) || (_realUnit getVariable ["incapacitated", false])) then 
+{
+	[_uid,_realUnit getVariable ["A3A_playerName","No Name"]] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;
+} else {
+	deleteVehicle _realUnit;
+};
 
 [_uid, _realUnit, false] call A3A_fnc_savePlayer;
 
 // Preventing duping due to weapon loadout saves
-if (alive _realUnit || {!(_realUnit getVariable ["incapacitated", false])} ) then { _realUnit setDamage 1 };			// finish off, if incapped
+if (!alive _realUnit || {(_realUnit getVariable ["incapacitated", false])} ) then { _realUnit setDamage 1 };			// finish off, if incapped
 false;
