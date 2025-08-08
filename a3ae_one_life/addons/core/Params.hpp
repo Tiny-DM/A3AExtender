@@ -66,4 +66,11 @@ class Params
         texts[] = {"Off", "3 minutes", "5 minutes", "10 minutes", "20 minutes"};
         default = 0;
     };
+    class A3A_funnyEnding
+    {
+        title = "Extender Parameter: Cinematic ending for Community";
+        values[] = {0,1};
+        texts[] = {"Off", "On"};
+        default = 0;
+    };
 };

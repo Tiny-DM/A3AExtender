@@ -34,8 +34,17 @@
       </Key>
     //////////////////////////////////////////////////////////////////////////////////
     </-->
-      <Key ID="STR_A3AE_maps_MoreSlots_Altis_mapname_short">
-        <Original>Antistasi Altis</Original>
+      <Key ID="STR_A3AE_maps_MoreSlots_____mapname_short">
+        <Original>Antistasi ___</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_____mapname">
+        <Original>Antistasi Hardcore - ___</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_____description">
+        <Original>Antistasi ___ 3.9.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_____loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Altis_mapname">
         <Original>Antistasi - Liberation of Altis</Original>
@@ -68,6 +77,42 @@
         <Original>Antistasi Napf 3.9.0, but with more player slots for your perusal.</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Napf_loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Enoch_mapname_short">
+        <Original>Antistasi Livonia</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Enoch_mapname">
+        <Original>Antistasi Hardcore - Livonia</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Enoch_description">
+        <Original>Antistasi Livonia 3.9.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Enoch_loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_vt7_mapname_short">
+        <Original>Antistasi Virolahti</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_vt7_mapname">
+        <Original>Antistasi Hardcore - Virolahti</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_vt7_description">
+        <Original>Antistasi Virolahti 3.9.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_vt7_loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno2020_mapname_short">
+        <Original>Antistasi Cherno 2020</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno2020_mapname">
+        <Original>Antistasi Hardcore - Cherno 2020</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno2020_description">
+        <Original>Antistasi Cherno 2020 3.9.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Cherno2020_loadText">
         <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
       </Key>
     </Container>

@@ -5,12 +5,26 @@ class CfgFunctions {
                 file = QPATHTOFOLDER(AI\fn_captureX.sqf);
             };
         };
+        class Ammunition {
+            class loot {
+                file = QPATHTOFOLDER(Ammunition\fn_loot.sqf);
+            };
+        };
         class Base {
+            class buildHQ {
+                file = QPATHTOFOLDER(Base\fn_buildHQ.sqf);
+            };
             class flagAction {
                 file = QPATHTOFOLDER(Base\fn_flagAction.sqf);
             };
             class garbageCleaner {
                 file = QPATHTOFOLDER(Base\fn_garbageCleaner.sqf);
+            };
+            class markerChange {
+                file = QPATHTOFOLDER(Base\fn_markerChange.sqf);
+            };
+            class mrkWin {
+                file = QPATHTOFOLDER(Base\fn_mrkWin.sqf);
             };
             class onPlayerDisconnect {
                 file = QPATHTOFOLDER(Base\fn_onPlayerDisconnect.sqf);
@@ -18,11 +32,22 @@ class CfgFunctions {
             class resourceCheckSkipTime {
                 file = QPATHTOFOLDER(Base\fn_resourceCheckSkipTime.sqf);
             };
+            class statistics {
+                file = QPATHTOFOLDER(Base\fn_statistics.sqf);
+            };
             class vehicleBoxRestore {
                 file = QPATHTOFOLDER(Base\fn_vehicleBoxRestore.sqf);
             };
         };
+        class Dialogs {
+            class canSkipTime {
+                file = QPATHTOFOLDER(Dialogs\fn_canSkipTime.sqf);
+            };
+        };
         class init {
+            class checkCampaignEnd {
+                file = QPATHTOFOLDER(init\fn_checkCampaignEnd.sqf);
+            };
             class initClient {
                 file = QPATHTOFOLDER(init\fn_initClient.sqf);
             };
@@ -31,6 +56,9 @@ class CfgFunctions {
             };
             class initVarServer {
                 file = QPATHTOFOLDER(init\fn_initVarServer.sqf);
+            };
+            class resourceCheck {
+                file = QPATHTOFOLDER(init\fn_resourceCheck.sqf);
             };
         };
         class Missions {
@@ -42,6 +70,11 @@ class CfgFunctions {
             };
             class RES_Refugees {
                 file = QPATHTOFOLDER(Missions\fn_RES_Refugees.sqf);
+            };
+        };
+        class OrgPlayers {
+            class playerLeash {
+                file = QPATHTOFOLDER(OrgPlayers\fn_playerLeash.sqf);
             };
         };
         class proxy {
@@ -79,6 +112,9 @@ class CfgFunctions {
             class playerManagementTab {
                 file = QPATHTOFOLDER(GUI\fn_playerManagementTab.sqf);
             };
+            class playerTab {
+                file = QPATHTOFOLDER(GUI\fn_playerTab.sqf);
+            };
         };
     };
     class JN {
@@ -100,6 +136,9 @@ class CfgFunctions {
         class Public {
             class addVehicle {
                 file = QPATHTOFOLDER(Public\fn_addVehicle.sqf);
+            };
+            class initGarage {
+                file = QPATHTOFOLDER(Public\fn_initGarage.sqf);
             };
         };
         class StatePreservation {
@@ -124,16 +163,23 @@ class CfgFunctions {
             class addToBanList {};
             class checkIfExpired {};
             class cleanUp {};
+            class clientCutscene {};
             class enterQuarantine {};
             class exitQuarantine {};
             class extendTimers {};
             class findDogTags {};
             class getTagsAndBodies {};
+            class getBanTimeRemaining {};
             class handleListRequest {};
             class manageSpectator {};
+            class manageFlagAccess {};
+            class nukeEffects {};
             class removeFromBanList {};
             class releaseAllPlayers {};
             class reviveRandom {};
+            class serverCutscene {};
+            class statBarCountdown {};
+            class subtitledAudio {};
             class unlockedToArsenal {};
             class viewDeadList {};
             class viewGameSpectators {};

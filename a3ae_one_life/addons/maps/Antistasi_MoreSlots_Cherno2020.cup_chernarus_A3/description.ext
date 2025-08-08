@@ -1,0 +1,41 @@
+#include "..\missionDescription\master.hpp"
+
+OnLoadName = $STR_A3AE_maps_MoreSlots_Cherno2020_mapname_short;
+OnLoadMission = $STR_A3AE_maps_MoreSlots_Cherno2020_loadText;
+briefingName = $STR_A3AE_maps_MoreSlots_Cherno2020_mapname;
+overviewText = $STR_A3AE_maps_MoreSlots_Cherno2020_description;
+loadScreen = "Pictures\Mission\pic.jpg"; // NB, this will resolve from root
+overviewPicture = "Pictures\Mission\pic.jpg"; // NB, this will resolve from root
+
+class CfgNotifications
+{
+    #include "..\missionDescription\CfgNotificationsContents.hpp"
+};
+
+class CfgDebriefing {
+    #include "..\missionDescription\CfgDebriefingContents.hpp"
+	class End1
+	{
+		title = "EVACUATION COMPLETE";
+		subtitle = "All players successfully evacuated";
+		description = "After the initial nuclear strike, two Russian TU-95 strategic bombers launched 12 Kh-55SM nuclear-armed cruise missiles at various strategic points across Chernarus. The region of South Zagoria has been estimated to be uninhabitable for the next 10,000 years. There is nowhere left to fight over.<br/><br/>After the aggression by Russia and inaction of the USMC, Petros vows revenge against governments wherever he can start a rebellion next.<br/><br/>Whether it could be called a morale victory is questionable, when there is no one left to boost morale for. One thing's for sure, though; NAPA punched well above their weight and fought for what was right. Good work, folks.";
+		picture = "n_inf";
+		pictureColor[] = {0.0,0.5,0.0,1};
+	};
+    class petrosDead
+    {
+        title = "Petros is Dead";
+        subtitle = "Petros is Dead";
+        description = "Congratulations!: Petros is Dead. Now with Syndikat without a leader, you may think about joining them, and free Chernarus";
+        picture = "b_unknown";
+        pictureColor[] = {0.5,0.0,0.0,1};
+    };
+    class destroyedSites
+    {
+        title = "Chernarus is Destroyed";
+        subtitle = "Chernarus got Destroyed by OPFOR";
+        description = "One third of the population in Chernarus has been murdered by the OPFOR.<br/>Chernarus no longer exists, nobody wants to live here.";
+        picture = "b_unknown";
+        pictureColor[] = {0.5,0.0,0.0,1};
+    };
+};
