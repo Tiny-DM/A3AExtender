@@ -605,11 +605,13 @@ DECLARE_SERVER_VAR(canReinforceInvader, []);
 
 // One Life Stuff
 DECLARE_SERVER_VAR(A3A_softBannedUIDList, []);
-private _prisonPos = switch (worldName) do {
-	case ("Altis"): {[8414.33,25129.7,0.00212097]};
-	case ("chernarus_summer"): {[100, 1500, 0]};
-	case ("Enoch"): {[9143.23,378.525,0.00143433]};
-	case ("Napf"): {[13286.6,19603.8,0.000953674]};
+private _prisonPos = switch (tolower worldName) do {
+	case ("altis"): {[8414.33,25129.7,0.00212097]};
+	case ("chernarus_summer"): {[2000, 2000, 0]};
+	case ("cup_chernarus_a3"): {[2000, 2000, 0]};
+	case ("umb_colombia"): {[100, 100, 0]};
+	case ("enoch"): {[9143.23,378.525,0.00143433]};
+	case ("napf"): {[13286.6,19603.8,0.000953674]};
 	case ("vt7"): {[7620.6,576.11,0.00152874]};
 	default {[100,100,0]};
 };

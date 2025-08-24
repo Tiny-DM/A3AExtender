@@ -115,6 +115,18 @@
       <Key ID="STR_A3AE_maps_MoreSlots_Cherno2020_loadText">
         <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
       </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Colombia_mapname_short">
+        <Original>Antistasi Chernarus</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Colombia_mapname">
+        <Original>Antistasi Hardcore - Chernarus</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Colombia_description">
+        <Original>Antistasi Chernarus Summer 3.9.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_Colombia_loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
+      </Key>
     </Container>
   </Package>
 </Project>
