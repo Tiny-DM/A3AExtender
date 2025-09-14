@@ -38,6 +38,11 @@ class CfgMissions
             briefingName = "Antistasi 3.9.0 - More Slots";
             directory = QCPATHTO(Antistasi_MoreSlots_Cherno2020.cup_chernarus_A3);
         };
+        class Antistasi_MoreSlots_CLN
+        {
+            briefingName = "Antistasi 3.9.0 - More Slots";
+            directory = QCPATHTO(Antistasi_MoreSlots_CLN.cam_lao_nam);
+        };
         class Antistasi_MoreSlots_Colombia
         {
             briefingName = "Antistasi 3.9.0 - More Slots";

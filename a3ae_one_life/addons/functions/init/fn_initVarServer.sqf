@@ -610,6 +610,7 @@ private _prisonPos = switch (tolower worldName) do {
 	case ("chernarus_summer"): {[2000, 2000, 0]};
 	case ("cup_chernarus_a3"): {[2000, 2000, 0]};
 	case ("umb_colombia"): {[100, 100, 0]};
+	case ("cam_lao_nam"): {[19885,14186.7,0.00140381]};
 	case ("enoch"): {[9143.23,378.525,0.00143433]};
 	case ("napf"): {[13286.6,19603.8,0.000953674]};
 	case ("vt7"): {[7620.6,576.11,0.00152874]};

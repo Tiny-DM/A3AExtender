@@ -119,12 +119,24 @@
         <Original>Antistasi Chernarus</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Colombia_mapname">
-        <Original>Antistasi Hardcore - Chernarus</Original>
+        <Original>Antistasi Hardcore - Colombia</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Colombia_description">
         <Original>Antistasi Chernarus Summer 3.9.0, but with more player slots for your perusal.</Original>
       </Key>
       <Key ID="STR_A3AE_maps_MoreSlots_Colombia_loadText">
+        <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_CLN_mapname_short">
+        <Original>Antistasi Cam Lao Nam</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_CLN_mapname">
+        <Original>Antistasi Hardcore - Cam Lao Nam</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_CLN_description">
+        <Original>Antistasi Cam Lao Nam 3.9.0, but with more player slots for your perusal.</Original>
+      </Key>
+      <Key ID="STR_A3AE_maps_MoreSlots_CLN_loadText">
         <Original>Dying is bad. Like, really bad. Avoid it if possible.</Original>
       </Key>
     </Container>

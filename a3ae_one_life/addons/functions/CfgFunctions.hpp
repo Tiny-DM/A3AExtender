@@ -98,6 +98,14 @@ class CfgFunctions {
                 file = QPATHTOFOLDER(Save\fn_saveLoop.sqf);
             };
         };
+        class Supports {
+            class SUP_SAM {
+                file = QPATHTOFOLDER(Supports\fn_SUP_SAM.sqf);
+            };
+            class SUP_SAMRoutine {
+                file = QPATHTOFOLDER(Supports\fn_SUP_SAMRoutine.sqf);
+            };
+        };
         class UtilityItems {
             class remainingAmmo {
                 file = QPATHTOFOLDER(UtilityItems\fn_remainingAmmo.sqf);
