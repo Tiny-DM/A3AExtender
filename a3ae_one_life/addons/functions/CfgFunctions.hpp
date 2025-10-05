@@ -99,6 +99,30 @@ class CfgFunctions {
             };
         };
         class Supports {
+            class showInterceptedSetupCall {
+                file = QPATHTOFOLDER(Supports\fn_showInterceptedSetupCall.sqf);
+            };
+            class showInterceptedSupportCall {
+                file = QPATHTOFOLDER(Supports\fn_showInterceptedSupportCall.sqf);
+            };
+            class SUP_airstrikeAvailable {
+                file = QPATHTOFOLDER(Supports\fn_SUP_airstrikeAvailable.sqf);
+            };
+            class SUP_artilleryAvailable {
+                file = QPATHTOFOLDER(Supports\fn_SUP_artilleryAvailable.sqf);
+            };
+            class SUP_carpetBombsAvailable {
+                file = QPATHTOFOLDER(Supports\fn_SUP_carpetBombsAvailable.sqf);
+            };
+            class SUP_mortarAvailable {
+                file = QPATHTOFOLDER(Supports\fn_SUP_mortarAvailable.sqf);
+            };
+            class SUP_artillery {
+                file = QPATHTOFOLDER(Supports\fn_SUP_artillery.sqf);
+            };
+            class SUP_carpetBombs {
+                file = QPATHTOFOLDER(Supports\fn_SUP_carpetBombs.sqf);
+            };
             class SUP_SAM {
                 file = QPATHTOFOLDER(Supports\fn_SUP_SAM.sqf);
             };
@@ -191,6 +215,8 @@ class CfgFunctions {
             class unlockedToArsenal {};
             class viewDeadList {};
             class viewGameSpectators {};
+            class vnx_ac119bomb {};
+            class vnx_ac119orbit {};
         };
     };
 };
