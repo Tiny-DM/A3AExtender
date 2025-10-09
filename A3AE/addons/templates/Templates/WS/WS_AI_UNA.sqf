@@ -6,8 +6,8 @@
 ["spawnMarkerName", "UNA Support Corridor"] call _fnc_saveToTemplate;
 
 ["flag", "Flag_NATO_F"] call _fnc_saveToTemplate;
-["flagTexture", "\lxws\data_f_lxws\img\flags\flag_Argana_CO.paa"] call _fnc_saveToTemplate;
-["flagMarkerType", "lxWS_flag_Argana"] call _fnc_saveToTemplate;
+["flagTexture", "\A3\Structures_F\Mil\Flags\Data\Mast_civ_CO.paa"] call _fnc_saveToTemplate;
+["flagMarkerType", "Flag_UN"] call _fnc_saveToTemplate;
 
 //////////////////////////
 //       Vehicles       //
@@ -22,17 +22,19 @@
 ["vehiclesBasic", ["B_Quadbike_01_F"]] call _fnc_saveToTemplate;
 private _LightUnarmed = ["B_UN_Offroad_Armor_lxWS", "B_UN_MRAP_01_lxWS"];
 private _LightArmed = ["a3ae_una_MRAP_03_hmg_F", "a3ae_una_MRAP_03_hmg_F", "a3ae_una_MRAP_03_gmg_F", "B_UNA_APC_Wheeled_02_hmg_lxWS"];
-["vehiclesTrucks", ["B_UN_Truck_01_covered_lxWS", "B_UN_Truck_01_covered_lxWS", "B_UNA_APC_Wheeled_02_unarmed_lxWS"]] call _fnc_saveToTemplate;
-["vehiclesCargoTrucks", ["B_UN_Truck_01_transport_lxWS", "a3ae_una_HEMTT_flatbed"]] call _fnc_saveToTemplate;
-["vehiclesAmmoTrucks", ["B_UN_Truck_01_ammo_lxWS"]] call _fnc_saveToTemplate;
-["vehiclesRepairTrucks", ["B_UN_Truck_01_Repair_lxWS"]] call _fnc_saveToTemplate;
-["vehiclesFuelTrucks", ["B_UN_Truck_01_fuel_lxWS"]] call _fnc_saveToTemplate;
-["vehiclesMedical", ["B_UN_Truck_01_medical_lxWS"]] call _fnc_saveToTemplate;
+private _vehiclesTrucks = ["B_UN_Truck_01_covered_lxWS", "B_UN_Truck_01_covered_lxWS", "B_UNA_APC_Wheeled_02_unarmed_lxWS"];
+private _vehiclesCargoTrucks = ["B_UN_Truck_01_transport_lxWS", "a3ae_una_HEMTT_flatbed"];
+private _vehiclesAmmoTrucks = ["B_UN_Truck_01_ammo_lxWS"];
+private _vehiclesRepairTrucks = ["B_UN_Truck_01_Repair_lxWS"];
+private _vehiclesFuelTrucks = ["B_UN_Truck_01_fuel_lxWS"];
+private _vehiclesMedical = ["B_UN_Truck_01_medical_lxWS"];
 ["vehiclesLightAPCs", ["B_UNA_APC_Wheeled_02_hmg_lxWS"]] call _fnc_saveToTemplate;
-["vehiclesAPCs", ["B_UN_APC_Wheeled_01_command_lxWS"]] call _fnc_saveToTemplate;
-["vehiclesIFVs", ["a3ae_una_Marshall_40mm_slat", "a3ae_una_Marshall_40mm_slat", "a3ae_una_Marshall_ATGM_slat"]] call _fnc_saveToTemplate;
+private _vehiclesAPCs = ["B_UN_APC_Wheeled_01_command_lxWS", "a3ae_una_marid_armed"];
+private _vehiclesIFVs = ["a3ae_una_Marshall_40mm_slat", "a3ae_una_Marshall_40mm_slat", "a3ae_una_Marshall_ATGM_slat"];
 private _Tanks = ["B_MBT_03_cannon_lxWS"];
-["vehiclesAA", ["B_APC_Tracked_01_AA_F"]] call _fnc_saveToTemplate;
+private _vehiclesHeavyTanks = [];
+private _vehiclesAA = ["a3ae_una_motorzu23"];
+private _vehiclesAirPatrol = [];
 
 ["vehiclesTransportBoats", ["I_C_Boat_Transport_02_F"]] call _fnc_saveToTemplate;
 ["vehiclesGunBoats", ["B_Boat_Armed_01_minigun_F", "a3a_Boat_Armed_01_hmg_blufor_F"]] call _fnc_saveToTemplate;
@@ -40,34 +42,35 @@ private _Tanks = ["B_MBT_03_cannon_lxWS"];
 
 ["vehiclesPlanesCAS", ["a3a_Plane_Fighter_03_grey_F"]] call _fnc_saveToTemplate;             // Will be used with CAS script, must be defined in setPlaneLoadout. Needs fixed gun and either rockets or missiles
 ["vehiclesPlanesAA", ["a3a_Plane_Fighter_04_grey_F"]] call _fnc_saveToTemplate;              // 
-["vehiclesPlanesTransport", ["B_T_VTOL_01_infantry_blue_F"]] call _fnc_saveToTemplate;
+private _vehiclesPlanesTransport = ["B_T_VTOL_01_infantry_blue_F"];
 
-//private _vehiclesHelisLight = ["O_Heli_Light_02_unarmed_F", "a3a_Heli_Light_01_ION_F"]; // ideally fragile & unarmed helis seating 4+
+private _vehiclesHelisLight = ["a3ae_una_hellcat_unarmed"]; // ideally fragile & unarmed helis seating 4+
 private _HelisTransport = ["B_UN_Heli_Transport_02_lxWS"];
 // Should be capable of dealing damage to ground targets without additional scripting
-//private _vehiclesHelisLightAttack = ["B_D_Heli_Light_01_dynamicLoadout_lxWS", "a3a_Heli_Light_02_black_F", "a3a_Heli_Light_01_dynamicLoadout_ION_F","B_Heli_Transport_01_pylons_F"];       // Utility helis with fixed or door guns + rocket pods
-//private _vehiclesHelisAttack = ["B_D_Heli_Attack_01_dynamicLoadout_lxWS","B_D_Heli_Attack_01_dynamicLoadout_lxWS","a3a_Heli_Attack_01_pylons_dynamicLoadout_sand_F"];
+private _vehiclesHelisLightAttack = ["a3ae_una_hellcat_unarmed"];       // Utility helis with fixed or door guns + rocket pods
+private _vehiclesHelisAttack = ["a3ae_una_mi48"];
 
-["vehiclesArtillery", ["B_MBT_01_arty_F","a3ae_una_Pickup_MRL"]] call _fnc_saveToTemplate; //this line determines artillery vehicles -- Example: ["vehiclesArtillery", ["B_MBT_01_arty_F"]] -- Array, can contain multiple assets
+["vehiclesArtillery", ["B_MBT_01_arty_F","a3ae_una_Pickup_MRL", "a3ae_una_Marshall_Mortar"]] call _fnc_saveToTemplate; //this line determines artillery vehicles -- Example: ["vehiclesArtillery", ["B_MBT_01_arty_F"]] -- Array, can contain multiple assets
 //new magazines storing methode, all vehicle magazines should be defined here in format [Vehicle class, [magazines]],
 ["magazines", createHashMapFromArray [
     ["B_MBT_01_arty_F",["32Rnd_155mm_Mo_shells"]],
-//    ["a3ae_una_Pickup_MRL",["12Rnd_230mm_rockets"]]
+    ["a3ae_una_Pickup_MRL",["14Rnd_80mm_rockets_rf"]],
+    ["a3ae_una_Marshall_Mortar",["64Rnd_60mm_Mo_shells_lxWS"]]
 ]] call _fnc_saveToTemplate;//this line determines artillery magazines -- Example: ["magazines", createHashMapFromArray [["B_MBT_01_arty_F", ["32Rnd_155mm_Mo_shells"]]]] -- Array, can contain multiple assets
 
-["uavsAttack", ["B_UAV_02_dynamicLoadout_F"]] call _fnc_saveToTemplate;
+private _uavsAttack = ["B_UAV_02_dynamicLoadout_F", "O_T_UAV_04_CAS_F"];
 ["uavsPortable", ["B_UAV_01_F", "B_UAV_01_F", "B_UAV_02_lxWS"]] call _fnc_saveToTemplate;
 
 //Config special vehicles - militia vehicles are mostly used in the early game, police cars are being used by troops around cities -- Example:
-private _vehiclesMilitiaLightArmed = ["a3ae_una_MRAP_03_hmg_F"];
-["vehiclesMilitiaTrucks", ["B_UN_Truck_01_transport_lxWS"]] call _fnc_saveToTemplate;
+private _vehiclesMilitiaLightArmed = ["a3ae_una_offroad50"];
+private _vehiclesMilitiaTrucks = ["B_UN_Truck_01_transport_lxWS"];
 private _vehiclesMilitiaCars = ["B_UN_Offroad_lxWS"];
 
 private _vehiclesPolice = ["B_GEN_Offroad_01_gen_F"];
 
 ["staticMGs", ["B_G_HMG_02_high_F"]] call _fnc_saveToTemplate;
 ["staticAT", ["B_static_AT_F"]] call _fnc_saveToTemplate;
-["staticAA", ["O_SFIA_ZU23_lxWS","B_static_AA_F"]] call _fnc_saveToTemplate;
+["staticAA", ["a3ae_una_zu23","B_static_AA_F"]] call _fnc_saveToTemplate;
 ["staticMortars", ["B_Mortar_01_F"]] call _fnc_saveToTemplate;
 
 ["mortarMagazineHE", "8Rnd_82mm_Mo_shells"] call _fnc_saveToTemplate;
@@ -81,9 +84,12 @@ if ("enoch" in A3A_enabledDLC) then {
 if ("orange" in A3A_enabledDLC) then {
 	_vehiclesPolice append ["B_GEN_Van_02_vehicle_F","B_GEN_Van_02_transport_F"];
 };
-if ("rf" in A3A_enabledDLC) then {
+private _isRF = ("rf" in A3A_enabledDLC);
+if (_isRF) then {
     _vehiclesPolice append ["a3a_police_Pickup_rf", "B_GEN_Pickup_covered_rf", "a3a_police_Pickup_comms_rf"];
     _HelisTransport append ["B_UN_Heli_EC_01A_military_RF"];
+    _vehiclesHelisLightAttack = ["a3ae_una_cougar_lightarmed"];
+    _vehiclesHelisAttack = ["a3ae_una_cougar_heavyarmed"];
     _vehiclesMilitiaCars append ["B_UN_Pickup_rf", "B_UN_Pickup_rf", "a3ae_una_Pickup_Comms"];
     _vehiclesMilitiaLightArmed append ["B_UN_Pickup_mmg_rf", "B_UN_Pickup_mmg_rf", "a3ae_una_Pickup_hmg", "a3ae_una_Pickup_minigun"];
     _vehiclesMedical append ["B_Truck_01_FFT_rf", "a3ae_una_Pickup_water"];
@@ -92,34 +98,67 @@ if ("rf" in A3A_enabledDLC) then {
     _LightArmed append ["a3ae_una_Pickup_rcws", "a3ae_una_Pickup_hmg"];
     _LightUnarmed append ["a3ae_una_Pickup_Covered"];
 };
-if (isClass (configFile >> "CfgPatches" >> )) then {
+if (isClass (configFile >> "CfgPatches" >> "PLP_UNARetex")) then {
+    _LightUnarmed append ["PLP_UNA_LSV_01_unarmed_F","PLP_UNA_LSV_02_unarmed_F", "PLP_UNA_MRAP_02_F", "PLP_UNA_MRAP_03_F"];
+    _LightArmed append ["a3ae_una_strider_hmg","a3ae_una_strider_hmg","a3ae_una_strider_gmg","a3ae_una_ifrit_hmg","a3ae_una_ifrit_hmg","a3ae_una_ifrit_gmg","a3ae_una_qilin_minigun","a3ae_una_qilin_minigun","a3ae_una_qilin_minigun","a3ae_una_prowlerHMG","a3ae_una_prowlerHMG"];
+    _vehiclesTrucks append ["PLP_UNA_Truck_03_transport_F","PLP_UNA_Truck_03_covered_F", "PLP_UNA_Truck_02_covered_F"];
+    _vehiclesCargoTrucks append ["PLP_UNA_Truck_03_transport_F", "PLP_UNA_Truck_02_transport_F"];
+    _vehiclesAmmoTrucks append ["PLP_UNA_Truck_03_ammo_F", "PLP_UNA_Truck_02_Ammo_F"];
+    _vehiclesRepairTrucks append ["PLP_UNA_Truck_03_repair_F", "PLP_UNA_Truck_02_box_F"];
+    _vehiclesFuelTrucks append ["PLP_UNA_Truck_03_fuel_F", "PLP_UNA_Truck_02_fuel_F"];
+    _vehiclesMedical append ["PLP_UNA_Truck_03_medical_F", "PLP_UNA_Truck_02_medical_F"];
+    _vehiclesAPCs append ["PLP_UNA_APC_Tracked_01_rcws_F", "PLP_UNA_APC_tracked_03_cannon_F"];
+    _vehicleIFVs append ["PLP_UNA_APC_tracked_03_cannon_F", "PLP_UNA_APC_Wheeled_03_cannon_F"];
+    _Tanks append ["PLP_UNA_MBT_01_cannon_F", "PLP_UNA_MBT_02_cannon_F"];
+    _vehiclesHeavyTanks append ["a3ae_una_heavySlammer", "PLP_UNA_MBT_04_cannon_F"];
+    _vehiclesAA = ["a3ae_una_motorzu23v2"];
+    _vehiclesPlanesTransport = ["PLP_UNA_VTOL_01_infantry_F","PLP_UNA_VTOL_02_infantry_F"];
+    _vehiclesHelisLight = ["PLP_UNA_Heli_light_03_unarmed_F", "PLP_UNA_Heli_Light_02_dynamicLoadout_F"];
+    _HelisTransport append ["B_UN_Heli_Transport_02_lxWS","PLP_UNA_Heli_Transport_04_bench_F","PLP_UNA_Heli_Transport_04_covered_F","PLP_UNA_Heli_Transport_03_F","PLP_UNA_Heli_Transport_03_unarmed_F"];
+    _vehiclesHelisLightAttack = ["PLP_UNA_Heli_light_03_dynamicLoadout_F", "PLP_UNA_Heli_Light_02_unarmed_F"];
+    _vehiclesHelisAttack = ["PLP_UNA_Heli_Attack_02","PLP_UNA_Heli_Attack_02","PLP_UNA_Heli_Attack_01_F"];
+    _uavsAttack = ["PLP_UNA_UAV_02_F", "PLP_UNA_UAV_04_F"];
+    _vehiclesMilitiaTrucks append ["PLP_UNA_Truck_02_transport_F", "PLP_UNA_Van_02_transport_F"];
+    _vehiclesMilitiaCars append ["PLP_UNA_SUV_01_F"];
+    _vehiclesAirPatrol append ["PLP_UNA_Heli_Light_01_F"];
 
+    if (_isRF) then {
+        _vehiclesHelisLightAttack append ["a3ae_una_cougar_lightarmed","a3ae_una_cougar_lightarmed"];
+        _vehiclesHelisAttack append ["a3ae_una_cougar_heavyarmed","a3ae_una_cougar_heavyarmed","a3ae_una_cougar_heavyarmed","a3ae_una_cougar_heavyarmed"];
+        _HelisTransport append ["B_UN_Heli_EC_01A_military_RF","B_UN_Heli_EC_01A_military_RF","B_UN_Heli_EC_01A_military_RF","B_UN_Heli_EC_01A_military_RF","B_UN_Heli_EC_01A_military_RF"];
+        _vehiclesCargoTrucks append ["a3ae_una_tempest_cargo"];
+    };
 };
-
-["vehiclesMedical", _vehiclesMedical] call _fnc_saveToTemplate;
-["vehiclesRepairTrucks", _vehiclesRepairTrucks] call _fnc_saveToTemplate;
-["vehiclesFuelTrucks",_vehiclesFuelTrucks] call _fnc_saveToTemplate;
-["vehiclesHelisLight", _vehiclesHelisLight] call _fnc_saveToTemplate;
-["vehiclesHelisAttack", _vehiclesHelisAttack] call _fnc_saveToTemplate;
-["vehiclesMilitiaLightArmed", _vehiclesMilitiaLightArmed] call _fnc_saveToTemplate;
-["vehiclesHelisLightAttack", _vehiclesHelisLightAttack] call _fnc_saveToTemplate;
-["vehiclesPolice", _vehiclesPolice] call _fnc_saveToTemplate;
 
 ["vehiclesLightUnarmed", _LightUnarmed] call _fnc_saveToTemplate;
 ["vehiclesLightArmed", _LightArmed] call _fnc_saveToTemplate;
-
+["vehiclesTrucks", _vehiclesTrucks] call _fnc_saveToTemplate;
+["vehiclesCargoTrucks", _vehiclesTrucks] call _fnc_saveToTemplate;
+["vehiclesAmmoTrucks", _vehiclesTrucks] call _fnc_saveToTemplate;
+["vehiclesRepairTrucks", _vehiclesRepairTrucks] call _fnc_saveToTemplate;
+["vehiclesFuelTrucks",_vehiclesFuelTrucks] call _fnc_saveToTemplate;
+["vehiclesMedical", _vehiclesMedical] call _fnc_saveToTemplate;
+["vehiclesAPCs", _vehiclesAPCs] call _fnc_saveToTemplate;
+["vehiclesIFVs", _vehiclesIFVs] call _fnc_saveToTemplate;
 ["vehiclesTanks", _Tanks] call _fnc_saveToTemplate;
-
+["vehiclesHeavyTanks", _vehiclesHeavyTanks] call _fnc_saveToTemplate;
+["vehiclesAA", _vehiclesAA] call _fnc_saveToTemplate;
+["vehiclesAirPatrol", _vehiclesAirPatrol] call _fnc_saveToTemplate;
+["vehiclesPlanesTransport", _vehiclesPlanesTransport] call _fnc_saveToTemplate;
+["vehiclesHelisLight", _vehiclesHelisLight] call _fnc_saveToTemplate;
 ["vehiclesHelisTransport", _HelisTransport] call _fnc_saveToTemplate;
+["vehiclesHelisLightAttack", _vehiclesHelisLightAttack] call _fnc_saveToTemplate;
+["vehiclesHelisAttack", _vehiclesHelisAttack] call _fnc_saveToTemplate;
+["uavsAttack", _uavsAttack] call _fnc_saveToTemplate;
+["vehiclesMilitiaLightArmed", _vehiclesMilitiaLightArmed] call _fnc_saveToTemplate;
+["vehiclesMilitiaTrucks", _vehiclesMilitiaTrucks] call _fnc_saveToTemplate;
 ["vehiclesMilitiaCars", _vehiclesMilitiaCars] call _fnc_saveToTemplate;
+["vehiclesPolice", _vehiclesPolice] call _fnc_saveToTemplate;
 
 //Minefield definition
 //CFGVehicles variant of Mines are needed "ATMine", "APERSTripMine", "APERSMine"
 ["minefieldAT", ["ATMine"]] call _fnc_saveToTemplate;
 ["minefieldAPERS", ["APERSMine"]] call _fnc_saveToTemplate;
-
-#include "..\Vanilla\Vanilla_Vehicle_Attributes.sqf"
-#include "WS_Vehicle_Attributes.sqf"
 
 /////////////////////
 ///  Identities   ///

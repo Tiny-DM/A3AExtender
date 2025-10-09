@@ -1,20 +1,24 @@
-#include "script_component.hpp"
+//RF - config.cpp
 
-class CfgPatches {
-    class ADDON {
+#include "..\script_component.hpp"
+
+class CfgPatches 
+{
+    class PATCHNAME(RF) 
+    {
         name = COMPONENT_NAME;
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {QDOUBLES(PREFIX,core)};
+        requiredAddons[] = {"A3_Data_F_AoW_Loadorder","PLP_UNARetex"};
         author = AUTHOR;
         authors[] = { AUTHORS };
         authorUrl = "";
         VERSION_CONFIG;
+        skipWhenMissingDependencies = 1;
     };
 };
 
 class CfgVehicles {
-    #include "ws.hpp"
-    
+    #include "una_retex.hpp"
 };

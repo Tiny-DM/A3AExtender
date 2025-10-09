@@ -1,12 +1,7 @@
 class Templates {
     class WS_Base; //import Vanilla_Base from A3A to use with defining a new vanilla template
 
-    class Vanilla_AAF { // overwrite existing template
-        basepath = QPATHTOFOLDER(Templates\Vanilla);
-        file = "Vanilla_AI_AAF";
-    };
-
-    class WS_UNA : Vanilla_Base
+    class WS_UNA : WS_Base
     {
         basepath = QPATHTOFOLDER(Templates\WS); //the path to the folder the template is located in, this translates to "\x\A3AE\addons\templates\Templates\Vanilla"
         side = "Occ"; //the side the faction defaults to, one of the following: Inv, Occ, Reb, Civ
