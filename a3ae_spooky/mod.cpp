@@ -1,5 +1,5 @@
-name = "A3 Antistasi Extender example";
-author = "A3-Antistasi dev team";
-tooltip = "Antistasi Extender example";
+name = "A3AE Spooky Halloween Extender";
+author = "Tiny & Bromancho";
+tooltip = "A3AE Spooky";
 actionName = "GitHub";
-action = "https://github.com/HakonRydland/A3AExtender";
+action = "https://github.com/Tiny-DM/A3AExtender/tree/spooky";

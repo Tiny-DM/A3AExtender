@@ -1,3 +1,4 @@
+/*
 class CfgFunctions {
     //be carefull when overwiriting functions as version updates can brake your exstension
     class A3A {
@@ -15,5 +16,23 @@ class CfgFunctions {
             class addExampleEventListener { postInit = 1; };
             class AIVehInit {};
         }
+    };
+};
+*/
+
+class CfgFunctions {
+    class A3A {
+
+        // EXTRA SUPPORTS GO HERE - THEY NEED TO BE PREFACED WITH A3A TO GET PICKED UP
+        class Supports {
+            class initSupports {
+                file = QPATHTOFOLDER(Missions\fn_initSupports.sqf);
+            };
+        };
+    };
+
+    //your own functions should be keept here
+    class ADDON {
+        
     };
 };
