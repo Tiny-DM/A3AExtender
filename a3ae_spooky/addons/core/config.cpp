@@ -13,3 +13,7 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
+
+class A3A {
+    #include "Params.hpp"
+};
