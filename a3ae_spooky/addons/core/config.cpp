@@ -17,3 +17,13 @@ class CfgPatches {
 class A3A {
     #include "Params.hpp"
 };
+
+class CfgAmmo {
+
+    class ammo_bomb_SDB;
+    class ammo_bomb_Gas : ammo_bomb_SDB {
+        indirectHit = 15;
+        indirectHitRange = 3;
+        explosionEffects = "MineExplosion";
+    };
+};

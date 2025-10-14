@@ -50,7 +50,7 @@ private _initData = [
     ["GASARTILLERY",    "AREA", 0.0, 0.0, 150,  85,  "", "vehiclesArtillery"],
     ["GASMORTAR",       "AREA", 0.0, 0.0, 100,  50,  "", "staticMortars"],
     ["GASCARPETBOMBS",  "AREA", 0.0, 0.0, 200,   0,  "", "vehiclesPlanesCAS"], 
-    ["ZOMBIEDROP",    "TROOPS", 0.0, 0.0, 200,   0,  "", "vehiclesPlanesTransport"], 
+    ["ZOMBIEDROP",    "TROOPS", 0.0, 0.0, 200,   0,  "", "vehiclesPlanesTransport"]
 
 //    ["GUNSHIP",    ["AREA",   0.2,  50,   0]],                 // uh. Does AREA work for this? Only lasts 5 minutes so maybe...
 ];

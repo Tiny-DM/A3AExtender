@@ -4,7 +4,6 @@ private _gogglesType = switch (missionNamespace getVariable (format ["A3A_%1_tem
     default {"G_AirPurifyingRespirator_01_F"};
 };
 {
-    
     removeGoggles _x;
-    _x addGoggles _gogglesType
+    _x addGoggles _gogglesType;
 } forEach _units;

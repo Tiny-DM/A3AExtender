@@ -89,27 +89,24 @@ private _sendCBRN = (random 100 < (_prob3 get _markerType));
 // Alright, cool. How is the gas delivered?
 
 private _idfVeh = selectRandomWeighted flatten [["mortar", (10 - tierWar) max 0], ["artillery", (tierWar - 5) max 0]];
-private _idfShell = selectRandomWeighted flatten [["gas", (10 - tierWar) max 0], ["he", (tierWar - 6) max 0]];
-
 private _airstrikeVeh = selectRandomWeighted flatten [["single", (7 - tierWar) max 0], ["multi", (tierWar - 3) max 0]];
-
 private _method = selectRandomWeighted flatten [["idf", (6 - tierWar) max 0], ["air", (tierWar - 1) max 0]];
-if (tierWar > 7) then (_method = "combined");
-if (_markerType = "roadblock") then {
+if (tierWar > 7) then {_method = "combined"};
+if (_markerType == "roadblock") then {
     _idfVeh = "mortar";
-    _idfShell = "gas";
     _method = "idf";
 };
 
 private _timeTillDrop = 0;
+private _reveal = [_mrkPos, _side] call A3A_fnc_calculateSupportCallReveal;
 if (_sendingZombieDrop) then {_timeTillDrop = [_mrkDest, _side] call A3AE_SPOOKY_FUNCTIONS_fnc_prepZombieDrop};
 
 if (_method != "air") then {
-    [_mrkDest, _side, _idfVeh, _idfShell, _timeTillDrop] spawn A3AE_SPOOKY_FUNCTIONS_fnc_gasIDF;
+    [_mrkPos, _side, _idfVeh, _timeTillDrop, _reveal] spawn A3AE_SPOOKY_FUNCTIONS_fnc_gasIDF;
 };
 
 if (_method != "idf") then {
-    [_mrkDest, _side, _airstrikeVeh, _timeTillDrop] spawn A3AE_SPOOKY_FUNCTIONS_fnc_gasAir;
+    [_mrkPos, _side, _airstrikeVeh, _timeTillDrop, _reveal] spawn A3AE_SPOOKY_FUNCTIONS_fnc_gasAir;
 };
 // Gas drop figured out. Exit now.
 
