@@ -229,7 +229,7 @@ switch (_mode) do
         _infoBarCB cbSetChecked !(ctrlShown ((uiNameSpace getVariable "H8erHUD") displayCtrl 1001));
 
         // Context menu is completely seperate. Build there.
-        [] call FUNC(buildContextMenu);
+        [] call A3A_GUI_fnc_buildContextMenu;
         
     };
 
