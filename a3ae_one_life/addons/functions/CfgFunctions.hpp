@@ -5,11 +5,6 @@ class CfgFunctions {
                 file = QPATHTOFOLDER(AI\fn_captureX.sqf);
             };
         };
-        class Ammunition {
-            class loot {
-                file = QPATHTOFOLDER(Ammunition\fn_loot.sqf);
-            };
-        };
         class Base {
             class buildHQ {
                 file = QPATHTOFOLDER(Base\fn_buildHQ.sqf);
@@ -19,12 +14,6 @@ class CfgFunctions {
             };
             class garbageCleaner {
                 file = QPATHTOFOLDER(Base\fn_garbageCleaner.sqf);
-            };
-            class markerChange {
-                file = QPATHTOFOLDER(Base\fn_markerChange.sqf);
-            };
-            class mrkWin {
-                file = QPATHTOFOLDER(Base\fn_mrkWin.sqf);
             };
             class onPlayerDisconnect {
                 file = QPATHTOFOLDER(Base\fn_onPlayerDisconnect.sqf);
@@ -51,14 +40,16 @@ class CfgFunctions {
             class initClient {
                 file = QPATHTOFOLDER(init\fn_initClient.sqf);
             };
-            class initUtilityItems {
-                file = QPATHTOFOLDER(init\fn_initUtilityItems.sqf);
-            };
             class initVarServer {
                 file = QPATHTOFOLDER(init\fn_initVarServer.sqf);
             };
             class resourceCheck {
                 file = QPATHTOFOLDER(init\fn_resourceCheck.sqf);
+            };
+        };
+        class Intel {
+            class selectIntel {
+                file = QPATHTOFOLDER(Intel\fn_selectIntel.sqf);
             };
         };
         class Missions {
@@ -105,42 +96,16 @@ class CfgFunctions {
             class showInterceptedSupportCall {
                 file = QPATHTOFOLDER(Supports\fn_showInterceptedSupportCall.sqf);
             };
-            class SUP_airstrikeAvailable {
-                file = QPATHTOFOLDER(Supports\fn_SUP_airstrikeAvailable.sqf);
-            };
-            class SUP_artilleryAvailable {
-                file = QPATHTOFOLDER(Supports\fn_SUP_artilleryAvailable.sqf);
-            };
-            class SUP_carpetBombsAvailable {
-                file = QPATHTOFOLDER(Supports\fn_SUP_carpetBombsAvailable.sqf);
-            };
-            class SUP_mortarAvailable {
-                file = QPATHTOFOLDER(Supports\fn_SUP_mortarAvailable.sqf);
-            };
             class SUP_artillery {
                 file = QPATHTOFOLDER(Supports\fn_SUP_artillery.sqf);
             };
             class SUP_carpetBombs {
                 file = QPATHTOFOLDER(Supports\fn_SUP_carpetBombs.sqf);
             };
-            class SUP_SAM {
-                file = QPATHTOFOLDER(Supports\fn_SUP_SAM.sqf);
-            };
-            class SUP_SAMRoutine {
-                file = QPATHTOFOLDER(Supports\fn_SUP_SAMRoutine.sqf);
-            };
-        };
-        class UtilityItems {
-            class remainingAmmo {
-                file = QPATHTOFOLDER(UtilityItems\fn_remainingAmmo.sqf);
-            };
         };
     };
     class A3A_GUI {
         class GUI {
-            class buyVehicleTabs {
-                file = QPATHTOFOLDER(GUI\fn_buyVehicleTabs.sqf);
-            };
             class playerManagementTab {
                 file = QPATHTOFOLDER(GUI\fn_playerManagementTab.sqf);
             };
@@ -156,35 +121,6 @@ class CfgFunctions {
             };
             class arsenal_loadInventory {
                 file = QPATHTOFOLDER(JNA\fn_arsenal_loadInventory.sqf);
-            };
-        };
-    };
-    class HR_GRG {
-        class Core {
-            class toggleConfirmBttn {
-                file = QPATHTOFOLDER(Core\fn_toggleConfirmBttn.sqf);
-            };
-        };
-        class Public {
-            class addVehicle {
-                file = QPATHTOFOLDER(Public\fn_addVehicle.sqf);
-            };
-            class initGarage {
-                file = QPATHTOFOLDER(Public\fn_initGarage.sqf);
-            };
-        };
-        class StatePreservation {
-            class getAmmoCargo {
-                file = QPATHTOFOLDER(StatePreservation\fn_getAmmoCargo.sqf);
-            };
-            class getState {
-                file = QPATHTOFOLDER(StatePreservation\fn_getState.sqf);
-            };
-            class setAmmoCargo {
-                file = QPATHTOFOLDER(StatePreservation\fn_setAmmoCargo.sqf);
-            };
-            class setState {
-                file = QPATHTOFOLDER(StatePreservation\fn_setState.sqf);
             };
         };
     };
@@ -204,7 +140,6 @@ class CfgFunctions {
             class getBanTimeRemaining {};
             class handleListRequest {};
             class manageSpectator {};
-            class manageFlagAccess {};
             class nukeEffects {};
             class removeFromBanList {};
             class releaseAllPlayers {};

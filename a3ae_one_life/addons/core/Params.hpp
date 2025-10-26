@@ -52,20 +52,6 @@ class Params
         texts[] = {$STR_antistasi_dialogs_generic_button_no_tooltip,$STR_antistasi_dialogs_generic_button_yes_text};
         default = 1;
     };
-    class A3A_oneLifeBlockStatics
-    {
-        title = "Extender Parameter: Block statics from being pulled away from airbases/HQ";
-        values[] = {0,1};
-        texts[] = {$STR_antistasi_dialogs_generic_button_no_tooltip,$STR_antistasi_dialogs_generic_button_yes_text};
-        default = 0;
-    };
-    class A3A_oneLifeFlagGarageBlock
-    {
-        title = "Extender Parameter: Block garage access and vehicle purchase access for X minutes after flipping the flag";
-        values[] = {0,3,5,10,20};
-        texts[] = {"Off", "3 minutes", "5 minutes", "10 minutes", "20 minutes"};
-        default = 0;
-    };
     class A3A_funnyEnding
     {
         title = "Extender Parameter: Cinematic ending for Community";
