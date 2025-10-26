@@ -14,6 +14,13 @@ class CfgPatches {
     };
 };
 
+class CfgSounds {
+    class californiaGurls {
+        name = "California Gurls";
+        sound[] = {"california.ogg",1, 1, 25};
+    };
+};
+
 //the pre proccessor ifs are there to make sure we overwrite/add to the correct config
 class A3A {
 #if __A3_DEBUG__

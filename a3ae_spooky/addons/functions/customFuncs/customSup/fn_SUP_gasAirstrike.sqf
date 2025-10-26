@@ -20,6 +20,7 @@ Returns:
 FIX_LINE_NUMBERS()
 
 params ["_supportName", "_side", "_resPool", "_maxSpend", "_target", "_targPos", "_reveal", "_delay"];
+diag_log format ["gasAirstrike params: %1", _this];
 
 private _airport = [_side, _targPos] call A3A_fnc_availableBasesAir;
 if(isNil "_airport") exitWith { Debug_1("No airport found for %1 support", _supportName); -1; };
@@ -32,7 +33,7 @@ Debug_3("Gas airstrike will be carried out with aircraft type %1 and setup time 
 
 [_supportName, _side, _delay, _targPos, _airport, _resPool, _planeType, "GAS", _reveal] spawn A3A_fnc_SUP_gasAirstrikeRoutine;
 
-[_reveal, _side, "GASAIRSTRIKE", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
+[_reveal, _side, "AIRSTRIKE", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
 // Return resource cost of support (planecost + 0)
 A3A_vehicleResourceCosts get _planeType;

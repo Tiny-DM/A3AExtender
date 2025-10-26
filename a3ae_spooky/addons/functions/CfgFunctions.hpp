@@ -27,10 +27,15 @@ class CfgFunctions {
                 file = QPATHTOFOLDER(overwrites\AI\fn_airbomb.sqf);
             };
         };
-        class Create {
-            class createAIControls {
-                file = QPATHTOFOLDER(overwrites\CREATE\fn_createAIControls.sqf);
+        class Base {
+            class commsMP {
+                file = QPATHTOFOLDER(overwrites\Base\fn_commsMP.sqf);
             };
+            class markerChange {
+                file = QPATHTOFOLDER(overwrites\Base\fn_markerChange.sqf);
+            };
+        };
+        class Create {
             class createAttackVehicle {
                 file = QPATHTOFOLDER(overwrites\CREATE\fn_createAttackVehicle.sqf);
             };
@@ -39,13 +44,26 @@ class CfgFunctions {
             };
         };
         class EventHandler {
-            class addArtilleryTrailEH {
-                file = QPATHTOFOLDER(overwrites\EventHandler\fn_addArtilleryTrailEH.sqf);
+            class addArtilleryFiredEH {
+                file = QPATHTOFOLDER(overwrites\EventHandler\fn_addArtilleryFiredEH.sqf);
+            };
+        };
+        class GarrisonLocal {
+            class garrisonLocal_zoneCheck {
+                file = QPATHTOFOLDER(overwrites\GarrisonLocal\fn_garrisonLocal_zoneCheck.sqf);
+            };
+        };
+        class init {
+            class initServer {
+                file = QPATHTOFOLDER(overwrites\init\fn_initServer.sqf);
             };
         };
         class Supports {
             class initSupports {
                 file = QPATHTOFOLDER(overwrites\Supports\fn_initSupports.sqf);
+            };
+            class maxDefenceSpend {
+                file = QPATHTOFOLDER(overwrites\Supports\fn_maxDefenceSpend.sqf);
             };
         };
         // EXTRA SUPPORTS GO HERE - THEY NEED TO BE PREFACED WITH A3A TO GET PICKED UP
@@ -75,7 +93,23 @@ class CfgFunctions {
 
     //your own functions should be keept here
     class ADDON {
-        
+
+        class blowout {
+            class blowoutDamage {
+                file = QPATHTOFOLDER(customFuncs\blowout\fn_blowoutDamage.sqf);
+            };
+            class blowoutLoop {
+                file = QPATHTOFOLDER(customFuncs\blowout\fn_blowoutLoop.sqf);
+            };
+        };
+        class california {
+            class startDance {
+                file = QPATHTOFOLDER(customFuncs\california\fn_startDance.sqf);
+            };
+            class stopDance {
+                file = QPATHTOFOLDER(customFuncs\california\fn_stopDance.sqf);
+            };
+        };
         class gas {
             class gasAir {
                 file = QPATHTOFOLDER(customFuncs\gas\fn_gasAir.sqf);
@@ -92,8 +126,14 @@ class CfgFunctions {
             class gasParticles {
                 file = QPATHTOFOLDER(customFuncs\gas\fn_gasParticles.sqf);
             };
+            class gasRaiseDead {
+                file = QPATHTOFOLDER(customFuncs\gas\fn_gasRaiseDead.sqf);
+            };
         };
         class spooky {
+            class doZombieDrop {
+                file = QPATHTOFOLDER(customFuncs\spooky\fn_doZombieDrop.sqf);
+            };
             class giveCBRNGear {
                 file = QPATHTOFOLDER(customFuncs\spooky\fn_giveCBRNGear.sqf);
             };
@@ -102,6 +142,9 @@ class CfgFunctions {
             };
             class prepZombieDrop {
                 file = QPATHTOFOLDER(customFuncs\spooky\fn_prepZombieDrop.sqf);
+            };
+            class zombieRuntime {
+                file = QPATHTOFOLDER(customFuncs\spooky\fn_zombieRuntime.sqf);
             };
         };
     };

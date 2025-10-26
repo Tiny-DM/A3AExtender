@@ -18,6 +18,7 @@ Arguments:
 FIX_LINE_NUMBERS()
 
 params ["_supportName", "_side", "_sleepTime", "_targetPos", "_airport", "_resPool", "_planeType", "_bombType", "_reveal"];
+diag_log format ["gasAirstrikeRoutine params: %1", _this];
 
 //Sleep to simulate preparation time
 sleep _sleepTime;
@@ -51,7 +52,8 @@ _plane addEventHandler ["Killed", {
 
 //Determine speed and bomb count on aggression
 private _bombCount = 4;
-if (_isCarpetBombing) then {_bombType = "GAS"};
+if (_isCarpetBombing) then {_bombCount = 3};
+private _bombType = "GAS";
 private _bombParams = [_plane, _bombType, _bombCount, 200];
 private _flightSpeed = "FULL";
 Info_5("Gas airstrike %1 against %2 with %3 %4 bombs at %5 speed", _supportName, _targetPos, _bombCount, _bombType, toLower _flightSpeed);

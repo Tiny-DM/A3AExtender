@@ -19,6 +19,7 @@ Returns:
 FIX_LINE_NUMBERS()
 
 params ["_supportName", "_side", "_resPool", "_maxSpend", "_target", "_targPos", "_reveal", "_delay"];
+diag_log format ["gasArtillery params: %1", _this];
 
 private _faction = Faction(_side);
 private _vehType = selectRandom (_faction get "vehiclesArtillery");
@@ -38,7 +39,8 @@ if(count _possibleBases == 0) exitWith { Debug("Couldn't find a suitable base fo
 private _base = selectRandom _possibleBases;
 
 // Spawn in artillery
-private _vehicle = [_vehType, markerPos _base, 50, 5, true] call A3A_fnc_safeVehicleSpawn;
+private _spawnPos = [markerPos _base, 10, 100] call A3A_fnc_findArtilleryPos;
+private _vehicle = createVehicle [_vehType, _spawnPos, [], 0, "NONE"];
 _vehicle setVariable ["shellType", _shellType];
 [_vehicle, _side, _resPool] call A3A_fnc_AIVehInit;
 
@@ -51,15 +53,13 @@ private _aggro = if(_side == Occupants) then {aggressionOccupants} else {aggress
 if (_delay < 0) then { _delay = (0.5 + random 1) * (300 - 15*tierWar - 1*_aggro) };
 
 private _targArray = [];
-if (_target isEqualType objNull) then {
-    _targArray = [_target, _targPos];
-};
+_targArray = [_target, _targPos];
 
 // name, side, suppType, pos, radius, remTargets, targets
 private _suppData = [_supportName, _side, "ARTILLERY", markerPos _base, _maxRange, _targArray, _minRange];
-[_suppData, _vehicle, _group, _delay, _reveal, true] spawn A3A_fnc_SUP_mortarRoutine;
+[_suppData, _vehicle, _group, _delay, _reveal, true] spawn A3A_fnc_SUP_gasMortarRoutine;
 
-[_reveal, _side, "GASARTILLERY", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
+[_reveal, _side, "ARTILLERY", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
 // Vehicle cost + extra support cost for balance
 (A3A_vehicleResourceCosts get _vehType) + (10 * count units _group) + 60;

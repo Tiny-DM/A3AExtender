@@ -20,6 +20,7 @@ Returns:
 FIX_LINE_NUMBERS()
 
 params ["_supportName", "_side", "_resPool", "_maxSpend", "_target", "_targPos", "_reveal", "_delay"];
+diag_log format ["gasMortar params: %1", _this];
 
 private _faction = Faction(_side);
 private _vehType = selectRandom (_faction get "staticMortars");
@@ -40,24 +41,24 @@ if(count _possibleBases == 0) exitWith { Debug("No bases found for mortar suppor
 
 //Search for an outpost with a designated mortar position if possible
 private _spawnRadius = 0;
-private _spawnParams = false;
+private _spawnPos = false;
 {
-    _spawnParams = [_x, "Mortar"] call A3A_fnc_findSpawnPosition;
-    if (_spawnParams isEqualType []) exitWith {};
+    private _places = A3A_spawnPlacesHM get _x;
+    private _placeIndex = _places findIf { _x#0 == "staticMortar" };
+    if (_placeIndex != -1) exitWith { _spawnPos = _places # _placeIndex # 1 };
 } forEach _possibleBases;
 
 // Otherwise just put it somewhere near the flag
-if !(_spawnParams isEqualType []) then 
+if !(_spawnPos isEqualType []) then 
 {
     private _base = selectRandom _possibleBases;
-    _spawnParams = [markerPos _base, 0, nil];
+    _spawnPos = markerPos _base;
     _spawnRadius = 10;
 };
 
 
 // Spawn in mortar
-private _vehicle = [_vehType, _spawnParams#0, _spawnRadius, 5, true] call A3A_fnc_safeVehicleSpawn;
-_vehicle setVariable ["spawnPlace", _spawnParams#2];
+private _vehicle = [_vehType, _spawnPos, _spawnRadius, 5, true] call A3A_fnc_safeVehicleSpawn;
 _vehicle setVariable ["shellType", _shellType];
 [_vehicle, _side, _resPool] call A3A_fnc_AIVehInit;
 
@@ -70,16 +71,18 @@ private _aggro = if(_side == Occupants) then {aggressionOccupants} else {aggress
 if (_delay < 0) then { _delay = (0.5 + random 1) * (250 - 10*tierWar - 1*_aggro) };
 
 private _targArray = [];
-if (_target isEqualType objNull) then {
-    A3A_supportStrikes pushBack [_side, "AREA", _targPos, time + 20*60, 20*60, 100];
-    _targArray = [_target, _targPos];
-};
+A3A_supportStrikes pushBack [_side, "AREA", _targPos, time + 20*60, 20*60, 100];
+_targArray = [_target, _targPos];
 
 // name, side, suppType, pos, radius, remTargets, targets
-private _suppData = [_supportName, _side, "MORTAR", _spawnParams#0, _maxRange, _targArray, _minRange];
-[_suppData, _vehicle, _group, _delay, _reveal, false] spawn A3A_fnc_SUP_mortarRoutine;
+private _suppData = [_supportName, _side, "MORTAR", _spawnPos, _maxRange, _targArray, _minRange];
+A3A_activeSupports pushBack _suppData;
+//[_suppData, _vehicle, _group, _delay, _reveal, false] spawn A3A_fnc_SUP_mortarRoutine;
 
-[_reveal, _side, "GASMORTAR", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
+[_suppData, _vehicle, _group, _delay, _reveal, false] spawn A3A_fnc_SUP_gasMortarRoutine;
+//[_reveal, _side, "MORTAR", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
+[_reveal, _side, "MORTAR", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
 // Mortar cost (might be free?) + extra support cost for balance
+//(A3A_vehicleResourceCosts getOrDefault [_vehType, 0]) + (10 * count units _group) + 100;
 (A3A_vehicleResourceCosts getOrDefault [_vehType, 0]) + (10 * count units _group) + 30;

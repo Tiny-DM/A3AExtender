@@ -30,6 +30,7 @@ if ((count _pos) isEqualTo 2) then {
     _pos pushBack 0;
 };
 
+/*
 private _lightPrimary = "#lightpoint" createVehicleLocal [ _pos#0, _pos#1, _pos#2 + 10];
 _lightPrimary setLightBrightness 21.4;
 _lightPrimary setLightAmbient[0.3, 0.1, 0];
@@ -39,19 +40,22 @@ private _lightAccent = "#lightpoint" createVehicleLocal [_pos#0, _pos#1, _pos#2 
 _lightAccent setLightBrightness 55;
 _lightAccent setLightAmbient[1, 1, 1];
 _lightAccent setLightColor[1, 1, 0.9];
+*/
 
 private _posAdj = [_pos#0, _pos#1, _pos#2 + 5];
 //--- Dust
 setWind [0.401112*2,0.204166*2,false];
 private _velocity = wind;
 
-private _colour = [1, 1, 1];
+private _colour = [0.02, 0.37, 0.14];
+/*
 private _alpha = 0.31;
 private _fireRed = "#particlesource" createVehicleLocal _posAdj;  // this is fire is red
 _fireRed setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 1, 12, 0], "", "Billboard", 1, 2 + random 3, [0, 0, 5], _velocity, 1, 1.1, 1, 0, [1 + (random 1.1)], [_colour + [0], _colour + [_alpha], _colour + [0]], [1000], 1, 0, "", "", 1];
 _fireRed setParticleRandom [3, [0, 0, 0], [random 4, random 4, 2], 14, 3, [0, 0, 0, 0.1], 1, 0];
 _fireRed setParticleCircle [20, [0, 0, 0]];
-_fireRed setDropInterval 0.004;
+_fireRed setDropInterval 0.004
+*/
 
 _alpha = 0.35 ;
 private _fireYellow = "#particlesource" createVehicleLocal _posAdj;  //this is fire is yellow
@@ -60,6 +64,7 @@ _fireYellow setParticleRandom [3, [0, 0, 0], [random 5, random 2, 1], 14, 3, [0,
 _fireYellow setParticleCircle [20, [0, 0, 0]];
 _fireYellow setDropInterval 0.0012;
 
+/*
 _alpha = 0.1 ;
 _colour = [1, 1, 0.9];
 private _fireWhite = "#particlesource" createVehicleLocal _posAdj;
@@ -67,8 +72,9 @@ _fireWhite setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3
 _fireWhite setParticleRandom [0, [0, 0, 0], [0.2, 0.2, 4], 14, 3, [0, 0, 0, 22], 1, 0];
 _fireWhite setParticleCircle [20, [0, 0, 0]];
 _fireWhite setDropInterval 0.01;
+*/
 
-
+/*
 [_lightAccent,_startTime,_cancellationTokenUUID] spawn {
     params ["_lightAccent","_startTime","_canTokUUID"];
     private _dimTime = 75;
@@ -79,13 +85,14 @@ _fireWhite setDropInterval 0.01;
     };
     _lightAccent setLightBrightness 0.001;
 };
+*/
 
 private _effectLifetimes = [  // These are independent times from startTime
-    [10,_fireWhite],
-    [75,_lightAccent],
-    [75,_fireYellow],
-    [90,_fireRed],
-    [90,_lightPrimary]
+    //[10,_fireWhite],
+    //[75,_lightAccent],
+    [75,_fireYellow]
+    //[90,_fireRed]
+    //[90,_lightPrimary]
 ];
 _effectLifetimes sort true;
 

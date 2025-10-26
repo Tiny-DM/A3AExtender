@@ -20,12 +20,13 @@ Returns:
 FIX_LINE_NUMBERS()
 
 params ["_supportName", "_side", "_resPool", "_maxSpend", "_target", "_targPos", "_reveal", "_delay"];
+diag_log format ["gasCarpetBombs params: %1", _this];
 
 private _airport = [_side, _targPos] call A3A_fnc_availableBasesAir;
 if(isNil "_airport") exitWith { Debug_1("No airport found for %1 support", _supportName); -1; };
 
 private _dir = (_targPos getDir markerPos _airport) + random 10;
-private _offset = 30 + random 20;
+private _offset = 60;
 private _planeType = selectRandom (Faction(_side) get "vehiclesPlanesCAS");
 private _aggroValue = if(_side == Occupants) then {aggressionOccupants} else {aggressionInvaders};
 if (_delay < 0) then { _delay = (0.5 + random 1) * (350 - 15*tierWar - 1*_aggroValue) };
@@ -37,7 +38,7 @@ A3A_supportStrikes pushBack [_side, "AREA", _targPos, time + 1200, 1200, 300];
 [_supportName, _side, _delay +1, _targPos, _airport, _resPool, _planeType, "CARPETGAS", 0] spawn A3A_fnc_SUP_gasAirstrikeRoutine;
 [_supportName, _side, _delay +2, _targPos getPos [_offset + random 2, _dir-90], _airport, _resPool, _planeType, "CARPETGAS", 0] spawn A3A_fnc_SUP_gasAirstrikeRoutine;
 
-[_reveal, _side, "GASCARPETBOMBS", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
+[_reveal, _side, "CARPETBOMBS", _targPos, _delay] spawn A3A_fnc_showInterceptedSetupCall;
 
 // Return resource cost of support
 150;

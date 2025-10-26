@@ -22,8 +22,8 @@ ServerInfo_1("Starting attack with parameters %1", _this);
 
 private _sendAttack = (_this call A3AE_SPOOKY_FUNCTIONS_fnc_handleSupports);
 if (_sendAttack == 0) exitWith {ServerInfo("No attack sent, gas sent instead")};
-if (_sendAttack == 1) then {missionNamespace setVariable [format ["A3AE_spooky_gas_%1", _mrkDest], true];};
-
+if (_sendAttack == 1) then {ServerInfo("Sending CBRN equipped units"); missionNamespace setVariable [format ["A3AE_spooky_gas_%1", _mrkDest], true];};
+if (_sendAttack == 2) then {ServerInfo("handleSupports returned 2, continuing")};
 private _airbase = [_side, markerPos _mrkDest] call A3A_fnc_availableBasesAir;
 
 //params ["_side", "_airbase", "_target", "_resPool", "_vehCount", "_delay", "_modifiers", "_attackType", "_reveal"];
@@ -53,7 +53,7 @@ while {true} do
     };
 
     // Attempt to flip marker
-    [_mrkDest, _markerSide] remoteExec ["A3A_fnc_zoneCheck", 2];
+    ["zoneCheck", [_mrkDest, true]] remoteExecCall ["A3A_fnc_garrisonOp", 2];       // could be three different machines...
     sleep 30;
 };
 

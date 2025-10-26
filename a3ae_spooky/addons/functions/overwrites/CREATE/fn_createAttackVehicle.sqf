@@ -37,9 +37,26 @@ if(isNull _vehicle) exitWith {objNull};
 [_vehicle, _troopType, _resPool, _side] call A3A_fnc_fillVehicleCrewCargo params ["_crewGroup", "_cargoGroup"];
 private _nearestMarker = [markersX, _posDestination] call BIS_fnc_nearestPosition;
 private _useCBRN = missionNamespace getVariable [format ["A3AE_spooky_gas_%1", _nearestMarker], true];
-if (_useCBRN) then {[_side, _crewGroup + _cargoGroup] call A3AE_SPOOKY_FUNCTIONS_fnc_giveCBRNGear};
+if (_useCBRN) then {[_side, (units _crewGroup) + (units _cargoGroup)] call A3AE_SPOOKY_FUNCTIONS_fnc_giveCBRNGear};
 
 _landPosBlacklist = [_vehicle, _crewGroup, _cargoGroup, _posDestination, _markerOrigin, _landPosBlacklist, _seaPath] call A3A_fnc_createVehicleQRFBehaviour;
 ServerDebug_5("Spawn Performed: Created vehicle %1 with %2 crew (%3) and %4 cargo (%5)", typeof _vehicle, count units _crewGroup, _crewGroup, count units _cargoGroup, _cargoGroup);
+
+// Wait until land vehicle has cleared the spawn place.
+if (_vehicleType isKindOf "Land") then {
+
+    private _spawnPos = getPosATL _vehicle;
+    private _spawnTime = time + 10;
+    waitUntil { _spawnPos distance2d _vehicle > 10 or time > _spawnTime };
+
+    if (_spawnPos distance2d _vehicle < 10) then {
+        Error_2("Vehicle %1 failed to clear spawn at %2", _vehicle, _markerOrigin);
+        // teleport to first waypoint
+        // arguably should just return empty array...
+        private _wayPos = waypointPosition (waypoints _crewGroup # 0);
+        _vehicle setVehiclePosition [_wayPos, [], 10, "NONE"];
+        _crewGroup setCurrentWaypoint [_crewGroup, 1];
+    };
+};
 
 [_vehicle, _crewGroup, _cargoGroup, _landPosBlacklist];

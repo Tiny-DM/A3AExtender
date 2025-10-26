@@ -59,17 +59,23 @@ isNil {
 };
 
 playSound3D ["a3\sounds_f\weapons\explosion\expl_big_3.wss",_pos, false, AGLToASL _pos, 5, 0.6, 3000];   // Isn't actually audible at 3km, by 500m it's competing with footsteps.
-[_pos,_endTime,_cancellationTokenUUID] spawn {
-    params ["_pos","_endTime","_canTokUUID"];
+/*
+[_pos,_endTime] spawn {
+    params ["_pos","_endTime"];
 
-    private _fnc_cancelRequested = { false; };// Future provisioning for implementation of cancellationTokens.
     private _audioDuration = 8.3; // audio is 8.538 seconds, subtract possible server->client latency
     private _audioEndTime = _endTime - _audioDuration;
 
-    while {serverTime < _audioEndTime && !([_canTokUUID] call _fnc_cancelRequested)} do {
+    while {serverTime < _audioEndTime} do {
         playSound3D ["a3\sounds_f\sfx\fire1_loop.wss",_pos, false, AGLToASL _pos, 5, 0.7, 3000];   // Isn't actually audible at 3km, by 500m it's competing with footsteps.
         uiSleep _audioDuration;
     };
+};
+*/
+[_pos, _gasRadius] spawn {
+    uisleep (8 + random 4);
+    diag_log _this;
+    _this call A3AE_SPOOKY_FUNCTIONS_fnc_gasRaiseDead;
 };
 
 while {_endTime > serverTime} do {
@@ -89,18 +95,10 @@ while {_endTime > serverTime} do {
 
 
     // Damage
-    private _victims = (_pos nearObjects ["All", _gasRadius]);  // The particle system is hardcoded. Radius appears 20-40m depending on wind.
-    private _crew = [];
-    { _crew append crew _x; } forEach _victims;
-    _victims append _crew;
-    isNil {  // Run in unscheduled scope to prevent parallel filtering.
-        _victims = _victims select { !isNull _x && {(_x getVariable ["A3A_gas_processing",0]) < serverTime}};    // Global to avoid double damage.
-        { _x setVariable ["A3A_gas_processing",serverTime + 30]; } forEach _victims;
-    };
+    private _victims = (allPlayers - entities "HeadlessClient_F") select {_x distance2d _pos < _gasRadius};
     {
         private _owner = owner _x;
-        if (_owner isEqualTo 0) then { _owner = 2; };
-        [_x, true, _side] remoteExecCall ["A3AE_SPOOKY_FUNCTIONS_fnc_gasDamage",_owner];
+        [_x, true] remoteExec ["A3AE_SPOOKY_FUNCTIONS_fnc_gasDamage",_owner];
     } forEach _victims;
 
     uiSleep 5;

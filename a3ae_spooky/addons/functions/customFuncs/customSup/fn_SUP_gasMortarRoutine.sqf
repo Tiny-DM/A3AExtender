@@ -15,16 +15,17 @@ Arguments:
 FIX_LINE_NUMBERS()
 
 params ["_suppData", "_mortar", "_crewGroup", "_sleepTime", "_reveal", "_isHeavyArty"];
+diag_log format ["gasMortarRoutine params: %1", _this];
 _suppData params ["_supportName", "_side", "_suppType", "_suppCenter", "_suppRadius", "_target"];
 
 //Sleep to simulate the time it would need to set the support up
 sleep _sleepTime;
 
 private _timeAlive = 1200;
-private _shotsForEffect = 10;
+private _shotsForEffect = 6;
 private _maxVolleys = 1;
 private _reloadTime = [3,10] select _isHeavyArty;
-private _spreadOffset = [200, 300] select _isHeavyArty;
+private _spreadOffset = 200;
 
 //A function to repeatedly fire onto a target without loops by using an EH
 private _fn_executeMortarFire =
@@ -39,13 +40,14 @@ private _fn_executeMortarFire =
             _mortar removeEventHandler ["Fired", _thisEventHandler];
             _mortar setVariable ["FireOrder", nil];
         };
+
         (_subTargets deleteAt 0) params ["_shotPos", "_delayTime", "_isRanging"];
         _mortar setVariable ["A3AE_spooky_firingGas", !_isRanging];
         [_shotPos, _delayTime, _mortar] spawn {
             params ["_shotPos", "_delayTime", "_mortar"];
             sleep _delayTime;
             _mortar doArtilleryFire [_shotPos, _mortar getVariable "shellType", 1];
-        };
+        }
     }];
 
     private _subTargets = _mortar getVariable ["FireOrder", []];
@@ -106,7 +108,7 @@ while {time < _timeout} do
 
     // Ranging shots
     if (_mortar distance2d _targetPos < 1500 + random 1500) then {
-        _subTargets pushBack [_targetPos getPos [_spreadOffset, random 360], 20];
+        _subTargets pushBack [_targetPos getPos [_spreadOffset, random 360], 20, true];
         
     } else {
         _subTargets pushBack [_targetPos getPos [_spreadOffset*1.5, random 360], 20, true];
@@ -138,7 +140,6 @@ while {time < _timeout} do
     //Makes sure that all units escape before attacking
     // [_side, _targetMarker] spawn A3A_fnc_clearTargetArea;
 };
-
 _mortar removeAllEventHandlers "Fired";
 _suppData set [4, 0];           // Set radius to zero to signal completion
 
