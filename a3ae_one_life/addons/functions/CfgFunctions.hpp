@@ -6,9 +6,6 @@ class CfgFunctions {
             };
         };
         class Base {
-            class buildHQ {
-                file = QPATHTOFOLDER(Base\fn_buildHQ.sqf);
-            };
             class flagAction {
                 file = QPATHTOFOLDER(Base\fn_flagAction.sqf);
             };
@@ -141,8 +138,9 @@ class CfgFunctions {
             class handleListRequest {};
             class manageSpectator {};
             class nukeEffects {};
-            class removeFromBanList {};
             class releaseAllPlayers {};
+            class removeFromBanList {};
+            class revealDeadInfo {};
             class reviveRandom {};
             class serverCutscene {};
             class statBarCountdown {};
