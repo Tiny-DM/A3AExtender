@@ -93,10 +93,13 @@ switch (_mode) do
         private _kickButton = _display displayCtrl A3A_IDC_KICKPLAYERBUTTON;
         private _banButton = _display displayCtrl A3A_IDC_BANPLAYERBUTTON;
 
+        
         // TODO UI-update: this probably needs some changes to work properly
         // private _player = allPlayers select _index;
         private _player = (_playerUID) call BIS_fnc_getUnitByUID;
         Debug_1("_player: %1", _player);
+
+        /*
         if ([_player] call A3A_fnc_isMember) then {
             _addButton ctrlShow false;
             _removeButton ctrlShow true;
@@ -104,9 +107,16 @@ switch (_mode) do
             _addButton ctrlShow true;
             _removeButton ctrlShow false;
         };
+        */
         private _name = name _player;
         _kickButton ctrlEnable false;
         _banButton ctrlEnable false;
+        _addButton ctrlShow true;
+        _removeButton ctrlShow false;
+        _addButton ctrlSetText "Revive Player";
+        private _banList = missionNamespace getVariable ["A3A_softBannedUIDList",[]];
+        private _isDead = ((_banList findIf {_x#0 ==_playerUID}) > -1);
+        _addButton ctrlEnable _isDead;
         /*
         player setVariable ["adminSelectedPlayer", _name];
         _kickButton ctrlRemoveAllEventHandlers "ButtonClick";
@@ -133,11 +143,12 @@ switch (_mode) do
     {
         private _display = findDisplay A3A_IDD_MAINDIALOG;
         private _listBox = _display displayCtrl A3A_IDC_ADMINPLAYERLIST;
-        private _index = lbCurSel _listBox;
-        _listBox lnbSetColor [[_index,0], A3A_COLOR_MEMBER_SQF];
-        private _playerUID = _listBox lnbText [_index, 2];
+        //_listBox lnbSetColor [[_index,0], A3A_COLOR_MEMBER_SQF];
+        private _playerUID = call _fnc_selPlayerUID;
+        diag_log _playerUID;
         private _player = (_playerUID) call BIS_fnc_getUnitByUID;
-        ["add",_player] call FUNCMAIN(memberAdd);
+        //["add",_player] call FUNCMAIN(memberAdd);
+        [_player,"ADMIN"] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_exitQuarantine",2];
         ["playerLbSelectionChanged"] spawn FUNC(playerManagementTab);
     };
 
@@ -147,7 +158,7 @@ switch (_mode) do
         private _listBox = _display displayCtrl A3A_IDC_ADMINPLAYERLIST;
         private _index = lbCurSel _listBox;
         _listBox lnbSetColor [[_index,0], A3A_COLOR_GUEST_SQF];
-        private _playerUID = _listBox lnbText [_index, 2];
+        private _playerUID = call _fnc_selPlayerUID;
         private _player = (_playerUID) call BIS_fnc_getUnitByUID;
         ["remove",_player] call FUNCMAIN(memberAdd);
         ["playerLbSelectionChanged"] spawn FUNC(playerManagementTab);

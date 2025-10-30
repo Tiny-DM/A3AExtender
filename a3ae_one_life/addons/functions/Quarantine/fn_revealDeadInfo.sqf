@@ -13,8 +13,8 @@ _countNames = ceil (_percentToReveal * _countFullList);
 private _namedList = [];
 for "_i" from 1 to _countNames do {
     _name = selectRandom _fullList;
-    _namedList pushBack _name;
+    _namedList pushBack (_name#1);
     _names deleteAt (_names find _name);
 };
 
-format ["You found confirmed kill reports of %1, and references to %2 other reports", _namedList, _countFullList - _countNames];
+format ["You found confirmed kill reports of %1, and references to %2 other reports", _namedList joinString ", ", _countFullList - _countNames];

@@ -25,6 +25,11 @@ class CfgFunctions {
                 file = QPATHTOFOLDER(Base\fn_vehicleBoxRestore.sqf);
             };
         };
+        class CREATE {
+            class NATOinit {
+                file = QPATHTOFOLDER(CREATE\fn_NATOinit.sqf);
+            };
+        };
         class Dialogs {
             class canSkipTime {
                 file = QPATHTOFOLDER(Dialogs\fn_canSkipTime.sqf);
