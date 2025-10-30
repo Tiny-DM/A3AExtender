@@ -31,21 +31,25 @@ private _oldGasScript = _victim getVariable ["A3A_gasPPHandler", scriptNull];
 if (!isNull _oldGasScript) then {terminate _oldGasScript};
 _victim setVariable ["A3A_gasPPHandler", _thisScript];
 
-private _ppApplyTime = 2;  // time for postprocess effect to kick in
-private _ppFadeoutTime = 5;
-private _ppEffectC = ppEffectCreate ["ColorCorrections",1500];
-_ppEffectC ppEffectEnable true;
-_ppEffectC ppEffectAdjust [1,1,0,[
+_ppEffectCStuff = if (!isNil "TNY_gasPPEffect") then {TNY_gasPPEffect} else {
+    [1,1,0,[
 0.02,  // Red color blend
 0.25,  // Green color blend
 0.09,  // Blue color blend
-0.97   // Alpha
+0.85   // Alpha
 ],[1,1,1,1],[0.33,0.33,0.33,0],[
 0.15,  // Hole X
 0.15,  // Hole Y
 0,0,0,0,
 0.05   // Interp
 ]];
+};
+
+private _ppApplyTime = 2;  // time for postprocess effect to kick in
+private _ppFadeoutTime = 5;
+private _ppEffectC = ppEffectCreate ["ColorCorrections",1500];
+_ppEffectC ppEffectEnable true;
+_ppEffectC ppEffectAdjust _ppEffectCStuff;
 
 _ppEffectC ppEffectCommit _ppApplyTime;
 _ppEffectD = ppEffectCreate ["DynamicBlur",500];

@@ -11,7 +11,7 @@ while {true} do {
     sleep (96 + _extraDelay);
     _allPlayers = (allPlayers - entities "HeadlessClient_F");
     _allAI = allUnits - _allPlayers;
-    {_x setVariable ["blowout_safe", true]} forEach _allAI;
+    {_x setVariable ["blowout_safe", true, true]} forEach _allAI;
     [] remoteExec ["A3AE_SPOOKY_FUNCTIONS_fnc_blowoutDamage", _allPlayers];
 
     TNY_lastBlowoutTime = time;
