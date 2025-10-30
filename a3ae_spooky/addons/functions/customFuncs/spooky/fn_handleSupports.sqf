@@ -90,7 +90,7 @@ ServerInfo_2("Sending Drop %1 Sending CBRN %2", str _sendingZombieDrop, str _sen
 // Alright, cool. How is the gas delivered?
 
 private _idfVeh = selectRandomWeighted flatten [["mortar", (10 - tierWar) max 0], ["artillery", (tierWar - 5) max 0]];
-private _airstrikeVeh = selectRandomWeighted flatten [["single", (7 - tierWar) max 0], ["multi", (tierWar - 3) max 0]];
+private _airstrikeVeh = selectRandomWeighted flatten [["single", (10 - tierWar) max 0], ["multi", (tierWar - 3) max 0]];
 private _method = selectRandomWeighted flatten [["idf", (6 - tierWar) max 0], ["air", (tierWar - 1) max 0]];
 if (tierWar > 7) then {_method = "combined"};
 

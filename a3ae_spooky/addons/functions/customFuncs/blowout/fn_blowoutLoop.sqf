@@ -16,4 +16,6 @@ while {true} do {
 
     TNY_lastBlowoutTime = time;
     TNY_timeForNextBlowout = time + TNY_hardBlowoutFreq + floor (random TNY_softBlowoutFreq);
+    sleep 600;
+    [10,0] remoteExec ["setRain",2]; [60,0.25] remoteExec ["setOvercast",2];
 };

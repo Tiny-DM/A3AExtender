@@ -2,6 +2,7 @@ params ["_pos", "_radius"];
  
 private _affected = (allDeadMen inAreaArray [_pos, _radius, _radius]) select {!(_x getVariable ["A3A_isZombie", false])}; 
 { 
+	if ((_x getVariable ["ownerUID", ""]) != "") then {continue};
 	private _unitPos = getPosATL _x; 
 	private _loadout = getUnitLoadout _x; 
 	private _unitType = typeOf _x; 
@@ -29,5 +30,5 @@ private _affected = (allDeadMen inAreaArray [_pos, _radius, _radius]) select {!(
     _newUnit setDir (random 360);
     deleteVehicle _x;
 	[_newUnit, false,false] execVM '\WBK_Zombies\AI\WBK_AI_Runner.sqf'; 
-	[_newUnit] spawn A3AE_SPOOKY_FUNCTIONS_fnc_zombieRuntime;
+	if ((_x getVariable ["ownerUID", ""]) == "") then {[_newUnit] spawn A3AE_SPOOKY_FUNCTIONS_fnc_zombieRuntime};
 } forEach _affected;
