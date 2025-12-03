@@ -19,8 +19,9 @@ _player setPosATL _prisonPos;
 
 Info_2("Quarantined %1 [UID: %2]",_name,_uid);  
 
-[_uid, _name] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList",2];
+[_uid, _name] call A3AE_ONE_LIFE_FUNCTIONS_fnc_addToBanList;
 ["ADD"] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_manageSpectator",_player];
+if (_player isEqualTo theBoss) then {[_player] call A3A_fnc_theBossToggleEligibility};
 
 waitUntil {sleep 0.1; ((_player distance2D _prisonPos) < 500)}; // make sure they have moved first
 

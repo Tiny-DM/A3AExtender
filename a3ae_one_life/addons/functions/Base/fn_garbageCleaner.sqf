@@ -20,7 +20,7 @@ Debug("Moving dead solders out of vehicles...")
 Debug("Finished moving soldiers out of vehicles; executing garbage clean.")
 sleep 0.5;
 
-private _allDeadMinusPlayers = allDead select {(_x getVariable ["ownerUID",""]) isEqualTo ""};
+private _allDeadMinusPlayers = allDeadMen select {(_x getVariable ["ownerUID",""]) isEqualTo ""};
 
 { deleteVehicle _x } forEach _allDeadMinusPlayers;
 { deleteVehicle _x } forEach (allMissionObjects "WeaponHolder");

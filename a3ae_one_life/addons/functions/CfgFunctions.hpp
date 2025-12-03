@@ -6,6 +6,9 @@ class CfgFunctions {
             };
         };
         class Base {
+            class buildHQ {
+                file = QPATHTOFOLDER(Base\fn_buildHQ.sqf);
+            };
             class flagAction {
                 file = QPATHTOFOLDER(Base\fn_flagAction.sqf);
             };
@@ -14,6 +17,9 @@ class CfgFunctions {
             };
             class onPlayerDisconnect {
                 file = QPATHTOFOLDER(Base\fn_onPlayerDisconnect.sqf);
+            };
+            class mrkWin {
+                file = QPATHTOFOLDER(Base\fn_mrkWin.sqf);
             };
             class resourceCheckSkipTime {
                 file = QPATHTOFOLDER(Base\fn_resourceCheckSkipTime.sqf);
@@ -41,6 +47,9 @@ class CfgFunctions {
             };
             class initClient {
                 file = QPATHTOFOLDER(init\fn_initClient.sqf);
+            };
+            class initServer {
+                file = QPATHTOFOLDER(init\fn_initServer.sqf);
             };
             class initVarServer {
                 file = QPATHTOFOLDER(init\fn_initVarServer.sqf);

@@ -26,7 +26,6 @@ if (!isNil "serverInitDone" and !isNil "A3A_utilityItemHM") then {
 };
 
 if (!requiredVersion QUOTE(REQUIRED_VERSION)) exitWith { Error("Arma version is out of date") };
-if (call A3A_fnc_modBlacklist) exitWith {};
 
 //Disables rabbits and snakes, because they cause the log to be filled with "20:06:39 Ref to nonnetwork object Agent 0xf3b4a0c0"
 //Can re-enable them if we find the source of the bug.
@@ -63,24 +62,23 @@ if !(isServer) then {
         0 spawn A3A_fnc_garrisonOpLoop;
     };
 
-    if ((isClass (configfile >> "CBA_Extended_EventHandlers")) && (
-        isClass (configfile >> "CfgPatches" >> "lambs_danger"))) then {
-        // disable lambs danger fsm entrypoint
-        ["CAManBase", "InitPost", {
-            params ["_unit"];
-            (group _unit) setVariable ["lambs_danger_disableGroupAI", true];
-            _unit setVariable ["lambs_danger_disableAI", true];
-        }] call CBA_fnc_addClassEventHandler;
-    };
 };
 
 // Server/client version check
-waitUntil { sleep 0.1; !isNil "initZonesDone" };
+waitUntil { sleep 0.1; getClientState == "BRIEFING READ" and !isNil "initZonesDone" };
 if (isNil "A3A_serverVersion") then { A3A_serverVersion = "pre-3.3" };
-if (A3A_clientVersion != A3A_serverVersion) exitWith {
+if (A3A_clientVersion != A3A_serverVersion) then {
     private _errorStr = format [localize "STR_A3A_feedback_serverinfo_mismatch", A3A_serverVersion, A3A_clientVersion];
-    [localize "STR_A3A_feedback_serverinfo", _errorStr] call A3A_fnc_customHint;
+    Error_2("Version mismatch: Server %1, client %2", A3A_serverVersion, A3A_clientVersion);
+    localize "STR_A3A_feedback_serverinfo" hintC parseText _errorStr;
+    waitUntil {sleep 0.01; isNull findDisplay 72};
+    hintSilent "";
 };
+
+// Should be called after server sends A3A_serverBadMods
+// Blocks until the hintCs are done if it's a real client
+[] call A3A_fnc_modBlacklist;
+
 
 // Show server startup state hints
 if (isNil "A3A_startupState") then { A3A_startupState = "waitserver" };
@@ -112,7 +110,7 @@ if (!isServer) then {
 
 // Headless clients register with server and bail out at this point
 if (!isServer and !hasInterface) exitWith {
-
+    if (A3A_clientVersion != A3A_serverVersion) exitWith {};            // Do not use HCs that have a version mismatch
     player setPosATL (markerPos respawnTeamPlayer vectorAdd [-100, -100, 0]);
     [clientOwner] remoteExecCall ["A3A_fnc_addHC",2];
 };
@@ -324,10 +322,9 @@ mapX allowDamage false;
 mapX addAction [localize "STR_A3A_fn_init_initclient_addact_gameOpt", {
     [
         localize "STR_A3A_fn_init_initclient_gameOpt_title",
-        localize "STR_A3A_fn_init_initclient_gameOpt_version"+" "+ QUOTE(VERSION_FULL) +"<br/><br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_resoBal"+" "+ (A3A_enemyBalanceMul / 10 toFixed 1) + "x" +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_unlockNo"+" "+ str minWeaps +"<br/>"+
-        localize "STR_A3A_fn_init_initclient_gameOpt_limFT"+" "+ ([localize "STR_antistasi_dialogs_generic_button_no_text",localize "STR_antistasi_dialogs_generic_button_yes_text"] select limitedFT) +"<br/>"+
+        localize "STR_A3A_fn_init_initclient_gameOpt_limFT"+" "+ ([localize "STR_antistasi_dialogs_generic_button_no_text",localize "STR_antistasi_dialogs_generic_button_yes_text"] select (limitedFT > 0)) +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_spawnDist"+" "+ str distanceSPWN + "m" +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_civLim"+" "+ str globalCivilianMax +"<br/>"+
         localize "STR_A3A_fn_init_initclient_gameOpt_timeGC"+" "+ ([[serverTime-A3A_lastGarbageCleanTime] call A3A_fnc_secondsToTimeSpan,1,0,false,2,false,true] call A3A_fnc_timeSpan_format)+"<br/><br/>"+
@@ -337,17 +334,6 @@ mapX addAction [localize "STR_A3A_fn_init_initclient_addact_gameOpt", {
 },nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 mapX addAction [localize "STR_A3A_fn_init_initclient_addact_mapinfo", A3A_fnc_mapInfoDialog,nil,0,false,true,"","(isPlayer _this) and (_this == _this getVariable ['owner',objNull]) and (side (group _this) == teamPlayer)", 4];
 if (isMultiplayer) then {mapX addAction [localize "STR_A3A_fn_init_initclient_addact_ailoadinfo", { [] remoteExec ["A3A_fnc_AILoadInfo",2];},nil,0,false,true,"",""]}; // should be no reason to restrict the aiLoadInfo to anyone
-
-// allow player to open any nearby helipads
-player addAction ["Open Heli Garage", 
-"
-        if ([getPosATL player] call A3A_fnc_enemyNearCheck) exitWith {[localize 'STR_A3A_fn_init_initclient_helipad',localize 'STR_A3A_fn_init_initclient_helipad_enemies'] call A3A_fnc_customHint};
-        _helipad = (nearestObjects [player, ['a3a_helipad'], 8, true])#0;
-        HR_GRG_accessPoint = _helipad;
-        HR_GRG_accessLimit = 'helipad';
-        createDialog 'HR_GRG_VehicleSelect';
-", nil, 4, true, true, "","(count (nearestObjects [player, ['a3a_helipad'], 8, true]) > 0) && {((isNil 'HR_GRG_Placing') || {!HR_GRG_Placing}) && player isEqualTo vehicle player && _this == _this getVariable ['owner',objNull]}"
-];
 
 mapX addAction ["View dead list", {
     ["VIEWDEADLIST"] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_handleListRequest", 2];
@@ -410,6 +396,8 @@ _layer = ["statisticsX"] call bis_fnc_rscLayer;
 if (A3A_hasACE) then {call A3A_fnc_initACE};
 
 [allCurators] call A3A_fnc_initZeusLogging;
+
+["loadSettings"] call A3A_GUI_fnc_optionsDialog;
 
 A3A_aliveTime = time;
 
