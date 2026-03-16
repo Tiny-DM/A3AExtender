@@ -58,14 +58,16 @@ while {true} do
 
 	// Regular income of finite starting weapons
 	private _equipMul = A3A_balancePlayerScale / 30;		// difficulty scaled. Hmm.
-	{
-		if (_x isEqualType "") then { continue };
-		_x params ["_class", "_initCount"];
-		private _count = _initCount * _equipMul;
-		_count = if (_count % 1 > random 1) then { ceil _count } else { floor _count };
-		private _arsenalTab = _class call jn_fnc_arsenal_itemType;
-		[_arsenalTab, _class, _count] call jn_fnc_arsenal_addItem;
-	} forEach (A3A_faction_reb get "initialRebelEquipment");
+	if (tierWar > 2) then {
+		{
+			if (_x isEqualType "") then { continue };
+			_x params ["_class", "_initCount"];
+			private _count = _initCount * _equipMul;
+			_count = if (_count % 1 > random 1) then { ceil _count } else { floor _count };
+			private _arsenalTab = _class call jn_fnc_arsenal_itemType;
+			[_arsenalTab, _class, _count] call jn_fnc_arsenal_addItem;
+		} forEach (A3A_faction_reb get "initialRebelEquipment");
+	};
     private _textX = format ["<t size='0.6' color='#C1C0BB'>" + (localize "STR_A3A_fn_init_resourceCheck_income"), _hrAdd toFixed 1, ceil _resAdd];
 	private _textArsenal = [] call A3A_fnc_arsenalManage;
 	if (_textArsenal != "") then {_textX = format ["%1<br/>" + localize "STR_A3A_fn_init_resourceCheck_arsenal" + "<br/><br/>%2", _textX, _textArsenal]};
