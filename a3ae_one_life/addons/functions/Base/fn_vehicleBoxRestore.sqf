@@ -68,11 +68,13 @@ private _hqVehicles = (vehicles inAreaArray [_posHQ, 150, 150]) select {
     _x setVariable ["A3A_reported", nil, true];
 } forEach _hqVehicles;
 
+/*
 if (HR_GRG_hasAmmoSource && !HR_GRG_ServiceDisabled_Rearm) then {
     {
         [_x,1] remoteExec ["setVehicleAmmo",_x];
     } forEach _hqVehicles;
 };
+*/
 
 if (HR_GRG_hasRepairSource && !HR_GRG_ServiceDisabled_Repair) then {
     {
@@ -90,9 +92,11 @@ if (HR_GRG_hasFuelSource && !HR_GRG_ServiceDisabled_Refuel) then {
 
 private _additiveTexts = [localize "STR_A3A_base_vehicleBoxRestore_noreported"]; 
  
+ /*
 if (HR_GRG_hasAmmoSource && !HR_GRG_ServiceDisabled_Rearm) then { 
 	_additiveTexts pushBack (localize "STR_A3A_base_vehicleBoxRestore_rearmed"); 
 }; 
+*/
 if (HR_GRG_hasRepairSource && !HR_GRG_ServiceDisabled_Repair) then { 
 	_additiveTexts pushBack (localize "STR_A3A_base_vehicleBoxRestore_repaired"); 
 }; 
