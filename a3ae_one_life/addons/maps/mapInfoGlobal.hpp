@@ -26,7 +26,9 @@ class mapInfo {
             {"Land_BagFence_Long_F", 10}, {"Land_BagFence_Round_F", 10}, {"Land_BagFence_Short_F", 10},
             // Non-camo vanilla stuff
             {"Land_SandbagBarricade_01_half_F", 20}, {"Land_SlumWall_01_s_2m_F", 5}, {"Land_PillboxBunker_01_hex_F", 200},
-            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10}
+            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10},
+            // Helipad
+            {"a3a_helipad", 1500, "helipad"}
 	    };
     };
     class cam_lao_nam {
@@ -58,7 +60,9 @@ class mapInfo {
             // Higher sandbag/metal walls + junk
             {"Land_vn_b_trench_revetment_tall_03", 20}, {"Land_vn_b_trench_revetment_05_01", 30}, {"Land_vn_barricade_01_4m_f", 30},
             // PAVN stuff
-            {"Land_vn_o_bunker_03", 40}, {"Land_vn_o_platform_06", 40}, {"Land_vn_fence_punji_01_03", 10}
+            {"Land_vn_o_bunker_03", 40}, {"Land_vn_o_platform_06", 40}, {"Land_vn_fence_punji_01_03", 10},
+            // Helipad
+            {"a3a_helipad", 1500, "helipad"}
         };
     };
     class chernarus_summer {
@@ -85,7 +89,9 @@ class mapInfo {
             {"Land_fort_artillery_nest_EP1", 200}, {"Land_fort_rampart_EP1", 50}, {"Fort_Barricade", 50}, {"Fence", 20}, {"FenceWood", 10}, {"FenceWoodPalet", 10}, 
             // Non-camo vanilla stuff
             {"Land_SandbagBarricade_01_half_F", 20}, {"Land_SlumWall_01_s_2m_F", 5}, {"Land_PillboxBunker_01_hex_F", 200},
-            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10}
+            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10},
+            // Helipad
+            {"a3a_helipad", 1500, "helipad"}
         };
     };
     class cup_chernarus_A3 {
@@ -199,7 +205,9 @@ class mapInfo {
             {"Land_fort_artillery_nest_EP1", 200}, {"Land_fort_rampart_EP1", 50}, {"Fort_Barricade", 50}, {"Fence", 20}, {"FenceWood", 10}, {"FenceWoodPalet", 10}, 
             // Non-camo vanilla stuff
             {"Land_SandbagBarricade_01_half_F", 20}, {"Land_SlumWall_01_s_2m_F", 5}, {"Land_PillboxBunker_01_hex_F", 200},
-            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10}
+            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10},
+            // Helipad
+            {"a3a_helipad", 1500, "helipad"}
         };
     };
 
@@ -247,7 +255,9 @@ class mapInfo {
             {"Land_BagFence_01_short_green_F", 10}, {"Land_BagFence_01_round_green_F", 10}, {"Land_BagFence_01_long_green_F", 10},
             // Non-camo vanilla stuff
             {"Land_SandbagBarricade_01_half_F", 20}, {"Land_SlumWall_01_s_2m_F", 5}, {"Land_PillboxBunker_01_hex_F", 200},
-            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10}
+            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10},
+            // Helipad
+            {"a3a_helipad", 1500, "helipad"}
         };
     };
 
@@ -321,7 +331,9 @@ class mapInfo {
             {"Land_fort_artillery_nest_EP1", 200}, {"Land_fort_rampart_EP1", 50}, {"Fort_Barricade", 50}, {"Fence", 20}, {"FenceWood", 10}, {"FenceWoodPalet", 10},
             // Non-camo vanilla stuff
             {"Land_SandbagBarricade_01_half_F", 20}, {"Land_SlumWall_01_s_2m_F", 5}, {"Land_PillboxBunker_01_hex_F", 200},
-            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10}
+            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10},
+            // Helipad
+            {"a3a_helipad", 1500, "helipad"}
         };
     };
     class vt7 {
@@ -348,7 +360,9 @@ class mapInfo {
             {"Land_fort_artillery_nest_EP1", 200}, {"Land_fort_rampart_EP1", 50}, {"Fort_Barricade", 50}, {"Fence", 20}, {"FenceWood", 10}, {"FenceWoodPalet", 10}, 
             // Non-camo vanilla stuff
             {"Land_SandbagBarricade_01_half_F", 20}, {"Land_SlumWall_01_s_2m_F", 5}, {"Land_PillboxBunker_01_hex_F", 200},
-            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10}
+            {"Land_Barricade_01_4m_F", 30}, {"Land_GuardBox_01_brown_F", 80}, {"Land_Tyres_F", 10},
+            // Helipad
+            {"a3a_helipad", 1500, "helipad"}
         };
     };
 };

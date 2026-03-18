@@ -48,9 +48,6 @@ class CfgFunctions {
             class initClient {
                 file = QPATHTOFOLDER(init\fn_initClient.sqf);
             };
-            class initServer {
-                file = QPATHTOFOLDER(init\fn_initServer.sqf);
-            };
             class initVarServer {
                 file = QPATHTOFOLDER(init\fn_initVarServer.sqf);
             };
