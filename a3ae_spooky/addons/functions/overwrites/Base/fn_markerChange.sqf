@@ -23,7 +23,7 @@ Info_3("Changing side of %1 from %2 to %3", _markerX, _loser, _winner);
 sidesX setVariable [_markerX,_winner,true];
 
 // Do the garrison update
-[_markerX, _winner] call A3A_fnc_garrisonServer_changeSide;
+[_markerX, _winner, _loser] call A3A_fnc_garrisonServer_changeSide;
 
 // Sort out war tier if necessary
 if (teamPlayer in [_loser, _winner]) then { [] call A3A_fnc_tierCheck };
@@ -51,29 +51,12 @@ if (_scripted) exitWith {
 	if (_winner != teamPlayer) then { [_markerX] call A3A_fnc_buildEnemyGarrison };
 };
 
-if (_winner == teamPlayer) then
-{
-	// Cap to 0.6 max to reward captures without previous support calls
-	private _resources = [_loser, teamPlayer, _markerX, 0.6] call A3A_fnc_maxDefenceSpend;
-
-	// Don't send anything if it'd be too small
-	private _minAttack = (1 + random 0.5) * A3A_balanceResourceRate;
-	if (_resources < _minAttack) exitWith {
-		Debug_2("Available resources (%1) below minimum attack (%2), sending no counterattack", _resources, _minAttack);
-	};
-
-	private _vehCount = round (random 0.5 + _resources / A3A_balanceVehicleCost);
-	private _reveal = [markerPos _markerX] call A3A_fnc_calculateSupportCallReveal;
-	_reveal = [_loser, markerPos _markerX, _reveal] call A3A_fnc_useRadioKey;
-
-	// Run on server for now because it needs availableBases functions
-	[_markerX, _loser, _vehCount, _reveal] spawn A3A_fnc_singleAttack;
-
-	// just estimates here. 
-	A3A_supportStrikes pushBack [_loser, "TROOPS", markerPos _markerX, time + 2700, 2700, _resources];
-    A3A_supportSpends pushBack [_loser, markerPos _markerX, markerPos _markerX, _resources, time];
+// Generate counterattack if appropriate
+if (_winner == teamPlayer) then {
+	[_markerX, _loser] spawn A3A_fnc_considerCounterattack;
+	private _sendAttack = ([_markerX, _loser] call A3AE_SPOOKY_FUNCTIONS_fnc_handleSupports);
+	if (_sendAttack == 1) then {ServerInfo("Sending CBRN equipped units"); missionNamespace setVariable [format ["A3AE_spooky_gas_%1", _markerX], true];};
 };
-
 
 private _loserName = Faction(_loser) get "name";
 private _prestigeOccupants = [0, 0];
@@ -96,6 +79,7 @@ if (_markerX in airportsX) then
 			_prestigeInvaders = [50, 150];
 		};
 		[] spawn A3A_fnc_checkCampaignEnd; // If an airport is taken by rebels, check for victory
+		[36, false, _positionX, 500] call A3A_tasks_fnc_rewardPlayers;      // players within 500m of flag
 	}
 	else
 	{
@@ -153,6 +137,7 @@ if (_markerX in outposts) then
             _prestigeOccupants = [-15, 90];
             _prestigeInvaders = [30, 150];
         };
+		[20, false, _positionX, 300] call A3A_tasks_fnc_rewardPlayers;      // players within 300m of flag
 	};
 	["TaskSucceeded", ["", localize "STR_A3A_fn_base_markerChange_yesOutpost"]] remoteExec ["BIS_fnc_showNotification",_winner];
 	["TaskFailed", ["", localize "STR_A3A_fn_base_markerChange_noOutpost"]] remoteExec ["BIS_fnc_showNotification",_loser];
@@ -172,6 +157,7 @@ if (_markerX in seaports) then
         {
             _prestigeInvaders = [20, 120];
         };
+		[15, false, _positionX, 300] call A3A_tasks_fnc_rewardPlayers;      // players within 300m of flag
 	};
 	["TaskSucceeded", ["", localize "STR_A3A_fn_base_markerChange_yesSeaport"]] remoteExec ["BIS_fnc_showNotification",_winner];
 	["TaskFailed", ["", localize "STR_A3A_fn_base_markerChange_noSeaport"]] remoteExec ["BIS_fnc_showNotification",_loser];
@@ -190,6 +176,7 @@ if (_markerX in factories) then
         {
             _prestigeInvaders = [20, 120];
         };
+		[10, false, _positionX, 300] call A3A_tasks_fnc_rewardPlayers;      // players within 300m of flag
 	};
 	["TaskSucceeded", ["", localize "STR_A3A_fn_base_markerChange_yesFactory"]] remoteExec ["BIS_fnc_showNotification",_winner];
 	["TaskFailed", ["", localize "STR_A3A_fn_base_markerChange_noFactory"]] remoteExec ["BIS_fnc_showNotification",_loser];
@@ -208,6 +195,7 @@ if (_markerX in resourcesX) then
         {
             _prestigeInvaders = [20, 120];
         };
+		[10, false, _positionX, 300] call A3A_tasks_fnc_rewardPlayers;      // players within 300m of flag
 	};
 	["TaskSucceeded", ["", localize "STR_A3A_fn_base_markerChange_yesResource"]] remoteExec ["BIS_fnc_showNotification",_winner];
 	["TaskFailed", ["", localize "STR_A3A_fn_base_markerChange_noResource"]] remoteExec ["BIS_fnc_showNotification",_loser];

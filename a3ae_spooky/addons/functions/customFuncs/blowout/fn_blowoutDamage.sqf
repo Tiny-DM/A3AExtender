@@ -1,5 +1,5 @@
 
-_playerIsSafe = [player] call diwako_anomalies_main_fnc_isInShelter;
+private _playerIsSafe = [player] call diwako_anomalies_main_fnc_isInShelter;
 player setVariable ["blowout_safe", true];
 sleep 1;
 if !(_playerIsSafe) then {

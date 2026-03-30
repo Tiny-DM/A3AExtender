@@ -23,7 +23,7 @@ Return codes:
 #include "..\..\script_component.hpp"
 FIX_LINE_NUMBERS()
 
-params ["_mrkDest", "_side", ["_vehCount", 1], ["_reveal", 1]]; // marker or position that must be gassed
+params ["_mrkDest", "_side"]; // marker or position that must be gassed
 diag_log format ["handleSupports params: %1", _this];
 
 if (tierWar < A3AE_spooky_gasTierStart) exitWith {EXIT_FULL};

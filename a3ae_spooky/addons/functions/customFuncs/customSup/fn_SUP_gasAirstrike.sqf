@@ -27,7 +27,7 @@ if(isNil "_airport") exitWith { Debug_1("No airport found for %1 support", _supp
 
 private _aggroValue = if(_side == Occupants) then {aggressionOccupants} else {aggressionInvaders};
 private _planeType = selectRandom (Faction(_side) get "vehiclesPlanesCAS");
-if (_delay < 0) then { _delay = (0.5 + random 1) * (300 - 15*tierWar - 1*_aggroValue) };
+if (_delay < 0) then { _delay = (0.5 + random 1) * (240 - 10*tierWar - 1*_aggroValue) };
 
 Debug_3("Gas airstrike will be carried out with aircraft type %1 and setup time %2", _planeType, _delay);
 

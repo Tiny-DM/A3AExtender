@@ -39,9 +39,6 @@ class CfgFunctions {
             class createAttackVehicle {
                 file = QPATHTOFOLDER(overwrites\CREATE\fn_createAttackVehicle.sqf);
             };
-            class singleAttack {
-                file = QPATHTOFOLDER(overwrites\CREATE\fn_singleAttack.sqf);
-            };
         };
         class EventHandler {
             class addArtilleryFiredEH {
@@ -52,18 +49,13 @@ class CfgFunctions {
             class garrisonLocal_zoneCheck {
                 file = QPATHTOFOLDER(overwrites\GarrisonLocal\fn_garrisonLocal_zoneCheck.sqf);
             };
-        };
-        class init {
-            class initServer {
-                file = QPATHTOFOLDER(overwrites\init\fn_initServer.sqf);
+            class vehActionArty {
+                file = QPATHTOFOLDER(overwrites\GarrisonLocal\fn_vehActionArty.sqf);
             };
         };
         class Supports {
             class initSupports {
                 file = QPATHTOFOLDER(overwrites\Supports\fn_initSupports.sqf);
-            };
-            class maxDefenceSpend {
-                file = QPATHTOFOLDER(overwrites\Supports\fn_maxDefenceSpend.sqf);
             };
         };
         // EXTRA SUPPORTS GO HERE - THEY NEED TO BE PREFACED WITH A3A TO GET PICKED UP
@@ -84,9 +76,6 @@ class CfgFunctions {
             };
             class SUP_gasArtillery {
                 file = QPATHTOFOLDER(customFuncs\customSup\fn_SUP_gasArtillery.sqf);
-            };
-            class SUP_gasMortarRoutine {
-                file = QPATHTOFOLDER(customFuncs\customSup\fn_SUP_gasMortarRoutine.sqf);
             };
         };
     };

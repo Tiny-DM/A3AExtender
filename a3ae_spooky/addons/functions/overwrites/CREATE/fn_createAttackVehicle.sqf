@@ -30,13 +30,13 @@ private _vehicle = if (_vehicleType isKindOf "Ship") then {
     _veh setDir (_seaPath#-1 getDir _seaPath#1);
     _veh;
 } else {
-    [_markerOrigin, _vehicleType] call A3A_fnc_spawnVehicleAtMarker;
+    [_markerOrigin, _vehicleType, _posDestination] call A3A_fnc_spawnVehicleAtMarker;
 };
 if(isNull _vehicle) exitWith {objNull};
 
 [_vehicle, _troopType, _resPool, _side] call A3A_fnc_fillVehicleCrewCargo params ["_crewGroup", "_cargoGroup"];
 private _nearestMarker = [markersX, _posDestination] call BIS_fnc_nearestPosition;
-private _useCBRN = missionNamespace getVariable [format ["A3AE_spooky_gas_%1", _nearestMarker], true];
+private _useCBRN = missionNamespace getVariable [format ["A3AE_spooky_gas_%1", _nearestMarker], false];
 if (_useCBRN) then {[_side, (units _crewGroup) + (units _cargoGroup)] call A3AE_SPOOKY_FUNCTIONS_fnc_giveCBRNGear};
 
 _landPosBlacklist = [_vehicle, _crewGroup, _cargoGroup, _posDestination, _markerOrigin, _landPosBlacklist, _seaPath] call A3A_fnc_createVehicleQRFBehaviour;
@@ -46,10 +46,10 @@ ServerDebug_5("Spawn Performed: Created vehicle %1 with %2 crew (%3) and %4 carg
 if (_vehicleType isKindOf "Land") then {
 
     private _spawnPos = getPosATL _vehicle;
-    private _spawnTime = time + 10;
-    waitUntil { _spawnPos distance2d _vehicle > 10 or time > _spawnTime };
+    private _spawnTime = time + 20;
+    waitUntil { _spawnPos distance2d _vehicle > 20 or time > _spawnTime };
 
-    if (_spawnPos distance2d _vehicle < 10) then {
+    if (_spawnPos distance2d _vehicle < 20) then {
         Error_2("Vehicle %1 failed to clear spawn at %2", _vehicle, _markerOrigin);
         // teleport to first waypoint
         // arguably should just return empty array...
