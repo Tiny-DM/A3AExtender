@@ -32,12 +32,14 @@ private _dogTagData = [];
 {_dogTagData pushBackUnique (_x getVariable ["ace_dogtags_dogTagData",[]]);} forEach _nearBags;
 {_dogTagData pushBackUnique (_allDogtags getOrDefault [_x,""]);} forEach _currentTags;
 
+_tagsSubmitted = 0;
 { // Param: dog tag data. Only important value is the first one, the name
     private _name = _x#0;
     private _pos = (_softBannedUIDList findIf {_x#1 == _name});
     if (_pos == -1) then { continue }; //  not on ban list
     private _banData = _softBannedUIDList#_pos;
     _playersToRelease set [_banData,"TAGS",true];
+    _tagsSubmitted = _tagsSubmitted + 1;
 } forEach _dogTagData;
 
 {
@@ -52,3 +54,5 @@ private _dogTagData = [];
         [_uid] remoteExecCall ["A3AE_ONE_LIFE_FUNCTIONS_fnc_removeFromBanList",2];
     };
 } forEach _playersToRelease;
+
+[5,player] call A3A_fnc_playerScoreAdd;

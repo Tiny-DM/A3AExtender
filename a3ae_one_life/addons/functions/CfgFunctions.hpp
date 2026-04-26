@@ -15,11 +15,14 @@ class CfgFunctions {
             class garbageCleaner {
                 file = QPATHTOFOLDER(Base\fn_garbageCleaner.sqf);
             };
-            class onPlayerDisconnect {
-                file = QPATHTOFOLDER(Base\fn_onPlayerDisconnect.sqf);
+            class getRoleCap {
+                file = QPATHTOFOLDER(Base\fn_getRoleCap.sqf);
             };
             class mrkWin {
                 file = QPATHTOFOLDER(Base\fn_mrkWin.sqf);
+            };
+            class onPlayerDisconnect {
+                file = QPATHTOFOLDER(Base\fn_onPlayerDisconnect.sqf);
             };
             class resourceCheckSkipTime {
                 file = QPATHTOFOLDER(Base\fn_resourceCheckSkipTime.sqf);
@@ -47,6 +50,9 @@ class CfgFunctions {
             };
             class initClient {
                 file = QPATHTOFOLDER(init\fn_initClient.sqf);
+            };
+            class initServer {
+                file = QPATHTOFOLDER(init\fn_initServer.sqf);
             };
             class initVarServer {
                 file = QPATHTOFOLDER(init\fn_initVarServer.sqf);
@@ -87,6 +93,11 @@ class CfgFunctions {
             };
             class controlUnit {
                 file = QPATHTOFOLDER(REINF\fn_controlUnit.sqf);
+            };
+        };
+        class roleSelect {
+            class roleSelectDialog {
+                file = QPATHTOFOLDER(roleSelect\fn_roleSelectDialog.sqf);
             };
         };
         class Save {

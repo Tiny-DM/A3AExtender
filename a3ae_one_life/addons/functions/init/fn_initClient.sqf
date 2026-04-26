@@ -369,9 +369,10 @@ player setVariable ["A3A_playerName",name player,true];
 
 [player,true] remoteExec ["A3AE_ONE_LIFE_FUNCTIONS_fnc_enterQuarantine",2];
 
+player setVariable ["A3A_Role", "rifleman", true];
+
 if (player == theBoss) then {
-    player setVariable ["A3A_Role", "rifleman"];
     ["commander",true] call A3A_fnc_unitTraits;
 } else {
-    createDialog "A3A_RoleSelectDialog"; // player will be commander if they set up the game
+    ["rifleman",true] call A3A_fnc_unitTraits;
 };
