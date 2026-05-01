@@ -55,4 +55,4 @@ _tagsSubmitted = 0;
     };
 } forEach _playersToRelease;
 
-[5,player] call A3A_fnc_playerScoreAdd;
+[5 * _tagsSubmitted,player] call A3A_fnc_playerScoreAdd;
