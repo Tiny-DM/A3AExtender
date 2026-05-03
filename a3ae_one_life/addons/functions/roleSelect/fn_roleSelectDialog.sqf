@@ -90,7 +90,7 @@ switch (_mode) do
 		private _firstLineText = localize format ["STR_antistasi_dialogs_roleselect_info_%1", _roleName];
 		private _secondLineText = localize format ["STR_antistasi_dialogs_roleselect_utility_%1", _roleName];
 		private _fullSlotsText = format [localize "STR_antistasi_dialogs_roleselect_slots", localize format ["STR_antistasi_dialogs_roleselect_role_%1",_roleName], _currentCount, str _maxCount];
-		private _slotExplanation = localize "STR_antistasi_dialogs_roleselect_capExplanation";
+		private _slotExplanation = "The cap of slots per role (excluding riflemen) increases as the number of players in the squad increases. Every role starts at 1 slot and gains a 2nd slot when the 6th player joins";
 		if (tolower _roleName in ["rifleman", "commander"]) then { // special counting cases
 			if (_roleName == "rifleman") then {
 				_fullSlotsText = format [localize "STR_antistasi_dialogs_roleselect_slotsRifleman",_currentCount];
@@ -141,7 +141,7 @@ switch (_mode) do
 		_mainInfoButton ctrlShow false;
 		_setRoleButton ctrlShow false;
 		_display setVariable ["displayState","info"];
-		_bannerImage ctrlSetText QPATHTOFOLDER(dialogues\textures\banner\mainBanner.jpg);;
+		_bannerImage ctrlSetText "x\A3A\addons\GUI\dialogues\textures\banner\mainBanner.jpg";
 		
 		_infoLine1 ctrlSetText (localize "STR_antistasi_dialogs_roleselect_welcome");
 		private _playerRole = player getVariable ["A3A_Role","none"];

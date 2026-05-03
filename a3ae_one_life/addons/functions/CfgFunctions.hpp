@@ -95,11 +95,6 @@ class CfgFunctions {
                 file = QPATHTOFOLDER(REINF\fn_controlUnit.sqf);
             };
         };
-        class roleSelect {
-            class roleSelectDialog {
-                file = QPATHTOFOLDER(roleSelect\fn_roleSelectDialog.sqf);
-            };
-        };
         class Save {
             class loadServer {
                 file = QPATHTOFOLDER(Save\fn_loadServer.sqf);
@@ -130,6 +125,11 @@ class CfgFunctions {
             };
             class playerTab {
                 file = QPATHTOFOLDER(GUI\fn_playerTab.sqf);
+            };
+        };
+        class roleSelect {
+            class roleSelectDialog {
+                file = QPATHTOFOLDER(roleSelect\fn_roleSelectDialog.sqf);
             };
         };
     };
