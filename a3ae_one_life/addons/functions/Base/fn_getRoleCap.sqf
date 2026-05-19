@@ -10,4 +10,4 @@ Even 2-3 medics in a squad is pretty slim for low-pop. Increase minimum.
 if (_roleName in ["rifleman", "commander"]) exitWith { -1 };
 
 private _countSquadPlayers = {isPlayer _x} count units group player;
-(floor (_countSquadPlayers/6)) + 1
+(floor (_countSquadPlayers/4)) + 1
