@@ -120,11 +120,17 @@ class CfgFunctions {
     };
     class A3A_GUI {
         class GUI {
+            class commanderTab {
+                file = QPATHTOFOLDER(GUI\fn_commanderTab.sqf);
+            };
             class playerManagementTab {
                 file = QPATHTOFOLDER(GUI\fn_playerManagementTab.sqf);
             };
             class playerTab {
                 file = QPATHTOFOLDER(GUI\fn_playerTab.sqf);
+            };
+            class recruitSquadDialog {
+                file = QPATHTOFOLDER(GUI\fn_recruitSquadDialog.sqf);
             };
         };
         class roleSelect {

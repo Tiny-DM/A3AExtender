@@ -63,7 +63,8 @@ call A3A_fnc_initZones;					// needed here because new-game setup needs to know 
 Info("Background init started");
 
 // U-interface init. May as well do this here, let players set up their groups?
-["Initialize", [nil, 10]] call BIS_fnc_dynamicGroups;
+//["Initialize", [nil, 10]] call BIS_fnc_dynamicGroups;
+["Initialize"] call BIS_fnc_dynamicGroups;
 
 // No reason not to do this early
 [] execVM "\x\A3A\addons\core\Scripts\fn_advancedTowingInit.sqf";

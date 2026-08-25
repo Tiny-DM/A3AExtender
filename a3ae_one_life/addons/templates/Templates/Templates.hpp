@@ -7,5 +7,6 @@ class Templates {
         shortName = "Police";
         side = "Occ"
         flagTexture = "\UK3CB_Factions\addons\UK3CB_Factions_APD\Flag\apd_flag_co.paa";
+        scope = 1;
     };
 };
